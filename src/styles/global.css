@@ -1,0 +1,161 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-ink: #1d1d1b;
+  --color-ink-soft: #474c55;
+  --color-ink-faint: #6f747e;
+  --color-rule: #dee3ea;
+  --color-blue: #253d91;
+  --color-keyline: #447cbf;
+  --color-night: #0c142c;
+  --color-night-soft: #141e3f;
+  --color-ramp-hi: #c1cad3;
+  --color-ramp-lo: #5a94cf;
+  --color-signal: #b3402f;
+
+  --font-sans: 'IBM Plex Sans Variable', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif;
+}
+
+:root {
+  --shear: -19.75deg;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection {
+  background: #253d91;
+  color: #fff;
+}
+
+/* Sheared tick — the site's structural marker, set at the mark's own shear. */
+.tick {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  transform: skewX(var(--shear));
+  background: var(--color-blue);
+  flex: none;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+}
+
+.on-night .eyebrow {
+  color: var(--color-ramp-lo);
+}
+.on-night .tick {
+  background: var(--color-ramp-lo);
+}
+
+/* Page-load sequence: quiet, staggered, once. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.9rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes tread-in {
+  from {
+    opacity: 0;
+    transform: skewX(var(--shear)) scaleY(0.12);
+  }
+  to {
+    opacity: 1;
+    transform: skewX(var(--shear)) scaleY(1);
+  }
+}
+
+/* Citation chip — the inline unit of accountability. */
+.cite-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  line-height: 1;
+  padding: 0.18em 0.45em 0.22em;
+  background: #eef1f7;
+  border: 1px solid var(--color-rule);
+  border-radius: 2px;
+  color: var(--color-blue);
+  white-space: nowrap;
+  vertical-align: 0.12em;
+  text-decoration: none;
+}
+.cite-chip:hover {
+  border-color: var(--color-keyline);
+}
+
+/* Editorial table */
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.doc-table th {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--color-ink-faint);
+  font-weight: 500;
+  padding: 0.55rem 0.75rem 0.55rem 0;
+  border-bottom: 1px solid var(--color-ink);
+}
+.doc-table td {
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  border-bottom: 1px solid var(--color-rule);
+  vertical-align: top;
+}
+.doc-table td:first-child {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--color-blue);
+}
+
+a {
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-keyline);
+  outline-offset: 2px;
+}

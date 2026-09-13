@@ -1,0 +1,163 @@
+---
+// Anatomy of a served answer — illustrative rendering of the format.
+---
+
+<div class="grid gap-8 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-12">
+  <figure class="answer-card">
+    <div class="card-top">
+      <span class="mono-label">Question</span>
+      <span class="mono-label muted">illustrative</span>
+    </div>
+    <p class="question">Is a creep test to D<sub>max</sub> = 26 000 v valid for a cell rated E<sub>max</sub> = 30 000 v?</p>
+
+    <div class="verdict">
+      <div class="verdict-head">
+        <span class="mono-label">Verdict · computed</span>
+        <span class="verdict-badge" aria-label="verdict: invalid">INVALID</span>
+      </div>
+      <pre class="arithmetic" aria-label="Computation"><code>constraint   D_max ≤ 0.8 · E_max
+0.8 × 30 000 v = 24 000 v
+D_max = 26 000 v
+→ exceeds the limit by 2 000 v</code></pre>
+      <p class="verdict-src">source: machine model · <span class="cite-chip">R 60-1 model · constraint</span></p>
+    </div>
+
+    <div class="answer-body">
+      <span class="mono-label">Answer</span>
+      <p>
+        The test is out of scope: for creep testing the maximum test load is bounded at
+        <em class="quote">“0.8 · E<sub>max</sub>”</em> — a hard limit of the model, so the verdict is computed rather
+        than judged <a class="cite-chip" href="https://ai.oimlsmart.org/">R 60-1:2021 §4.4.2</a>. The cell may be
+        tested to D<sub>max</sub> = 24 000 v at most.
+      </p>
+    </div>
+    <figcaption class="caption">
+      Illustrative rendering of the served format. Live answers, with the citations opening the original document at
+      the cited clause, are at the reference deployment.
+    </figcaption>
+  </figure>
+
+  <ul class="annotations">
+    <li>
+      <p class="mono-label">01 · citation</p>
+      <p>Every substantive claim names the publication, edition and clause behind it — the reader can go and look.</p>
+    </li>
+    <li>
+      <p class="mono-label">02 · verbatim values</p>
+      <p>Normative values are quoted exactly from the source passage, so the claim can be checked mechanically.</p>
+    </li>
+    <li>
+      <p class="mono-label">03 · verdict as data</p>
+      <p>The rule is executed, not quoted. The verdict and its arithmetic arrive attached to the answer, and the
+        model may not soften or contradict them.</p>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .answer-card {
+    border: 1px solid var(--color-rule);
+    background: var(--color-surface);
+    padding: 1.4rem 1.5rem 1.1rem;
+    margin: 0;
+    box-shadow: 0 1px 2px rgba(29, 29, 27, 0.04), 0 12px 32px -18px rgba(37, 61, 145, 0.25);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+  .muted {
+    color: var(--color-rule);
+  }
+  .question {
+    margin-top: 0.6rem;
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .verdict {
+    margin-top: 1.1rem;
+    border: 1px solid rgba(179, 64, 47, 0.35);
+    background: rgba(179, 64, 47, 0.05);
+    padding: 0.9rem 1rem;
+  }
+  .verdict-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .verdict-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: var(--color-signal);
+    padding: 0.2rem 0.55rem;
+  }
+  .arithmetic {
+    margin: 0.7rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+    overflow-x: auto;
+  }
+  .verdict-src {
+    margin-top: 0.7rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-faint);
+  }
+  .answer-body {
+    margin-top: 1.2rem;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 0.9rem;
+  }
+  .answer-body p {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .quote {
+    font-style: normal;
+    background: #dce6f5;
+    padding: 0 0.15em;
+  }
+  .caption {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--color-ink-faint);
+  }
+  .annotations {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+  .annotations li {
+    border-left: 2px solid var(--color-rule);
+    padding-left: 1.1rem;
+  }
+  .annotations p:last-child {
+    margin-top: 0.35rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+  }
+  .annotations .mono-label {
+    color: var(--color-blue);
+  }
+</style>

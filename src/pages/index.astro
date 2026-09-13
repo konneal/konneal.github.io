@@ -1,0 +1,235 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import SectionHead from '~/components/SectionHead.astro'
+import Staircase from '~/components/Staircase.astro'
+import AnswerCard from '~/components/AnswerCard.astro'
+import Logo from '~/components/Logo.astro'
+import VerdictPlayground from '~/components/VerdictPlayground.vue'
+import { CAPABILITIES, SITE, SUITE } from '~/data/site'
+---
+
+<BaseLayout title="Konneal">
+  <!-- Hero -->
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pt-20">
+      <div class="max-w-3xl">
+        <p class="eyebrow rise"><span class="tick"></span>Knowledge annealment for standards</p>
+        <h1
+          class="rise mt-5 font-serif text-[2.55rem] font-medium leading-[1.06] tracking-[-0.015em] sm:text-[3.6rem]"
+          style="animation-delay: 0.08s"
+        >
+          Standards that answer for themselves.
+        </h1>
+        <p class="rise mt-6 max-w-2xl text-[1.06rem] leading-relaxed text-ink-soft" style="animation-delay: 0.16s">
+          Konneal turns a standards organization’s own publications into a question-answering service. Answers cite the
+          exact publication, edition and clause. Tables, formulas and figures render from source. And conformance
+          questions are decided by executing the organization’s rules — with the arithmetic shown.
+        </p>
+        <div class="rise mt-8 flex flex-wrap items-center gap-4" style="animation-delay: 0.24s">
+          <a
+            href={SITE.reference.url}
+            class="border border-blue bg-blue px-5 py-2.5 font-mono text-[0.85rem] text-white transition-colors hover:bg-[#1c2f73]"
+          >
+            See it live — {SITE.reference.name} ↗
+          </a>
+          <a
+            href="/how-it-works/"
+            class="border border-rule bg-surface px-5 py-2.5 font-mono text-[0.85rem] text-blue transition-colors hover:border-keyline"
+          >
+            How it works
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-16 sm:mt-20">
+        <p class="font-mono text-[0.68rem] uppercase tracking-[0.15em] text-ink-faint">
+          Capability by corpus representation — measured over the OIML R&nbsp;60 family, 18 witness-graded probes
+        </p>
+        <div class="mt-6">
+          <Staircase />
+        </div>
+        <p class="mt-4 text-sm text-ink-faint">
+          The serving stack is worth +3 rungs over the best single representation.
+          <a href="/annealment/" class="text-blue underline decoration-rule underline-offset-4 hover:decoration-keyline">The measurement ↗</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Suite -->
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <SectionHead
+        eyebrow="The suite"
+        title="Authored in Metanorma. Modelled in Primmel. Served by Konneal."
+        lede="Structure is decided long before a question is asked. Konneal is the third layer of a suite in which the document, the model of its rules, and the serving plane reinforce one another."
+      />
+      <div class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-3">
+        {
+          SUITE.map((s) => (
+            <article class="bg-surface p-7">
+              <p class="flex items-baseline justify-between font-mono text-[0.72rem] text-ink-faint">
+                <span>{s.step}</span>
+                {s.href ? (
+                  <a href={s.href} class="text-blue hover:text-keyline">
+                    {s.tool} ↗
+                  </a>
+                ) : (
+                  <span class="text-blue">{s.tool}</span>
+                )}
+              </p>
+              <h3 class="mt-4 font-serif text-[1.35rem] font-medium">{s.layer}</h3>
+              <p class="mt-3 text-[0.93rem] leading-relaxed text-ink-soft">{s.what}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Answer contract -->
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <SectionHead
+        eyebrow="The answer contract"
+        title="Anatomy of an answer"
+        lede="Every substantive claim carries an inline citation. Normative values are quoted verbatim. Verdicts arrive computed, as data."
+      />
+      <div class="mt-10">
+        <AnswerCard />
+      </div>
+    </div>
+  </section>
+
+  <!-- Execution (night) -->
+  <section class="on-night border-b border-night bg-night">
+    <div class="mx-auto max-w-6xl px-5 py-16 text-ramp-hi sm:px-8 sm:py-20">
+      <div class="max-w-3xl">
+        <p class="eyebrow"><span class="tick"></span>Execution</p>
+        <h2 class="mt-3 font-serif text-[1.75rem] font-medium leading-[1.15] text-white sm:text-[2.1rem]">
+          Where retrieval ends, execution begins.
+        </h2>
+        <p class="mt-4 text-[1.02rem] leading-relaxed text-ramp-hi/80">
+          Retrieval can quote a rule. Execution decides it. When a question names a machine-checkable constraint, the
+          service binds the stated values to the rule’s parameters, evaluates the check deterministically, and attaches
+          the verdict to the answer as data — the model must present it faithfully and cannot soften it.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+        <div class="border border-white/12 bg-night-soft/60 p-6 sm:p-8">
+          <VerdictPlayground client:load />
+        </div>
+        <div class="flex flex-col justify-center gap-6">
+          <div class="border-l-2 border-ramp-lo/60 pl-5">
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.15em] text-ramp-lo">Provable absence</p>
+            <p class="mt-2 text-[0.92rem] leading-relaxed text-ramp-hi/80">
+              “Does this standard constrain packaging?” — the service enumerates the entire model and returns a
+              certificate: N nodes examined, none matched, scope stated. A refusal found nothing; a certificate
+              examined everything.
+            </p>
+          </div>
+          <div class="border-l-2 border-ramp-lo/60 pl-5">
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.15em] text-ramp-lo">Answer verification</p>
+            <p class="mt-2 text-[0.92rem] leading-relaxed text-ramp-hi/80">
+              Any answer — from this service or another system — can be checked against the corpus: every quoted span
+              must appear verbatim in a served passage; a judge scores faithfulness, labeled as judged.
+            </p>
+          </div>
+          <a href="/how-it-works/" class="pl-5 font-mono text-[0.8rem] text-ramp-lo hover:text-white"
+            >The full pipeline →</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <SectionHead
+        eyebrow="Capabilities"
+        title="What the corpus pays back"
+        lede="Each capability below states what it does — and what happens without it. The distinction is measured, not asserted."
+      />
+      <div class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-2 lg:grid-cols-3">
+        {
+          CAPABILITIES.map((c) => (
+            <article class="bg-surface p-6">
+              <span class="tick" style="width: 0.45rem; height: 0.45rem" />
+              <h3 class="mt-4 font-serif text-[1.15rem] font-medium leading-snug">{c.name}</h3>
+              <p class="mt-2.5 text-[0.88rem] leading-relaxed text-ink-soft">{c.what}</p>
+              <p class="mt-3 border-t border-rule pt-3 text-[0.78rem] leading-relaxed text-ink-faint">
+                <span class="font-mono text-[0.68rem] uppercase tracking-[0.12em]">Without it</span> — {c.without}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- White label + reference -->
+  <section>
+    <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div class="flex flex-col justify-center">
+          <p class="eyebrow"><span class="tick"></span>For standards organizations</p>
+          <h2 class="mt-3 font-serif text-[1.75rem] font-medium leading-[1.15] sm:text-[2.1rem]">
+            Your corpus. Your members. Your brand.
+          </h2>
+          <p class="mt-4 text-[1.02rem] leading-relaxed text-ink-soft">
+            A deployment is white-labeled to the organization: your publications, your terminology, your profile and
+            your frontend — carrying a small “Powered by Konneal” credit beside your emblem. You own the content and
+            the answers it produces; Konneal builds the databases and serves the API.
+          </p>
+          <a href="/deployments/" class="mt-6 font-mono text-[0.8rem] text-blue hover:text-keyline"
+            >Deployments and adoption →</a
+          >
+        </div>
+        <div class="flex items-center justify-center border border-rule bg-surface p-10">
+          <Logo variant="light" lockup="credit" class="grayscale-0" />
+        </div>
+      </div>
+
+      <div class="mt-16 border border-blue/25 bg-surface p-8 sm:p-10">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <div class="max-w-xl">
+            <p class="eyebrow"><span class="tick"></span>The reference deployment</p>
+            <h2 class="mt-3 font-serif text-[1.6rem] font-medium leading-tight">{SITE.reference.name}</h2>
+            <p class="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">
+              The public question-answering service of the International Organization of Legal Metrology — running the
+              Konneal engine in production, with cited answers, computed verdicts and the measurement gates.
+            </p>
+          </div>
+          <div class="flex flex-col items-start gap-5 lg:items-end">
+            <dl class="flex flex-wrap gap-x-8 gap-y-3 font-mono text-[0.78rem]">
+              <div>
+                <dt class="text-ink-faint">publications</dt>
+                <dd class="text-[1.15rem] font-medium text-blue">≈ 900</dd>
+              </div>
+              <div>
+                <dt class="text-ink-faint">words indexed</dt>
+                <dd class="text-[1.15rem] font-medium text-blue">9.3 M</dd>
+              </div>
+              <div>
+                <dt class="text-ink-faint">languages</dt>
+                <dd class="text-[1.15rem] font-medium text-blue">9</dd>
+              </div>
+              <div>
+                <dt class="text-ink-faint">golden suite</dt>
+                <dd class="text-[1.15rem] font-medium text-blue">95 %+</dd>
+              </div>
+            </dl>
+            <a
+              href={SITE.reference.url}
+              class="border border-blue bg-blue px-5 py-2.5 font-mono text-[0.85rem] text-white transition-colors hover:bg-[#1c2f73]"
+            >
+              ai.oimlsmart.org ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

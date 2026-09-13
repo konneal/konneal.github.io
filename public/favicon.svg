@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="kl1" x1="26.76" y1="47.46" x2="132.93" y2="108.76" gradientUnits="userSpaceOnUse">
+      <stop offset=".28" stop-color="#253d91"/><stop offset=".4" stop-color="#253d91" stop-opacity=".96"/><stop offset=".56" stop-color="#253d91" stop-opacity=".85"/><stop offset=".74" stop-color="#253d91" stop-opacity=".66"/><stop offset=".94" stop-color="#253d91" stop-opacity=".4"/><stop offset="1" stop-color="#253d91" stop-opacity=".3"/>
+    </linearGradient>
+    <linearGradient id="kl2" x1="46.91" y1="68.66" x2="153.09" y2="129.96" gradientUnits="userSpaceOnUse" href="#kl1"/>
+    <linearGradient id="kl3" x1="67.07" y1="89.86" x2="173.24" y2="151.16" gradientUnits="userSpaceOnUse" href="#kl1"/>
+    <linearGradient id="kd1" x1="26.76" y1="47.46" x2="132.93" y2="108.76" gradientUnits="userSpaceOnUse">
+      <stop offset=".28" stop-color="#c1cad3"/><stop offset=".37" stop-color="#bdc8d2" stop-opacity=".98"/><stop offset=".49" stop-color="#b3c2d2" stop-opacity=".91"/><stop offset=".62" stop-color="#a2b9d1" stop-opacity=".79"/><stop offset=".76" stop-color="#8aadd0" stop-opacity=".63"/><stop offset=".92" stop-color="#6c9dcf" stop-opacity=".42"/><stop offset="1" stop-color="#5a94cf" stop-opacity=".3"/>
+    </linearGradient>
+    <linearGradient id="kd2" x1="46.91" y1="68.66" x2="153.09" y2="129.96" gradientUnits="userSpaceOnUse" href="#kd1"/>
+    <linearGradient id="kd3" x1="67.07" y1="89.86" x2="173.24" y2="151.16" gradientUnits="userSpaceOnUse" href="#kd1"/>
+  </defs>
+  <style>
+    #fav-light { display: block; }
+    #fav-dark { display: none; }
+    @media (prefers-color-scheme: dark) {
+      #fav-light { display: none; }
+      #fav-dark { display: block; }
+    }
+  </style>
+  <g id="fav-light">
+    <polygon points="3.55 117.42 31.75 38.81 156.14 38.81 127.94 117.42 3.55 117.42" fill="url(#kl1)"/>
+    <path d="m152.59,41.31l-26.41,73.61H7.11l26.41-73.61h119.07m7.11-5H29.99L0,119.92h129.7l29.99-83.61h0Z" fill="#fff"/>
+    <g opacity=".68">
+      <polygon points="23.71 138.61 51.91 60.01 176.29 60.01 148.09 138.61 23.71 138.61" fill="url(#kl2)"/>
+      <path d="m172.74,62.51l-26.41,73.61H27.26l26.41-73.61h119.07m7.11-5H50.15l-29.99,83.61h129.7l29.99-83.61h0Z" fill="#fff"/>
+    </g>
+    <g opacity=".38">
+      <polygon points="43.86 159.81 72.06 81.2 196.45 81.2 168.25 159.81 43.86 159.81" fill="url(#kl3)"/>
+      <path d="m192.89,83.7l-26.41,73.61H47.41l26.41-73.61h119.07m7.11-5H70.3l-29.99,83.61h129.7l29.99-83.61h0Z" fill="#fff"/>
+    </g>
+  </g>
+  <g id="fav-dark">
+    <polygon points="3.55 117.42 31.75 38.81 156.14 38.81 127.94 117.42 3.55 117.42" fill="url(#kd1)"/>
+    <path d="m152.59,41.31l-26.41,73.61H7.11l26.41-73.61h119.07m7.11-5H29.99L0,119.92h129.7l29.99-83.61h0Z" fill="#447cbf"/>
+    <g opacity=".68">
+      <polygon points="23.71 138.61 51.91 60.01 176.29 60.01 148.09 138.61 23.71 138.61" fill="url(#kd2)"/>
+      <path d="m172.74,62.51l-26.41,73.61H27.26l26.41-73.61h119.07m7.11-5H50.15l-29.99,83.61h129.7l29.99-83.61h0Z" fill="#447cbf"/>
+    </g>
+    <g opacity=".38">
+      <polygon points="43.86 159.81 72.06 81.2 196.45 81.2 168.25 159.81 43.86 159.81" fill="url(#kd3)"/>
+      <path d="m192.89,83.7l-26.41,73.61H47.41l26.41-73.61h119.07m7.11-5H70.3l-29.99,83.61h129.7l29.99-83.61h0Z" fill="#447cbf"/>
+    </g>
+  </g>
+</svg>

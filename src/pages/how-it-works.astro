@@ -1,0 +1,199 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import SectionHead from '~/components/SectionHead.astro'
+import QuoteVerifier from '~/components/QuoteVerifier.vue'
+import { SITE } from '~/data/site'
+
+const building = [
+  {
+    name: 'Provenance and curation',
+    body: 'The corpus is assembled from the organization’s own sources: curated, machine-readable editions where they exist, and scanned originals recovered by OCR where they do not. Every chunk records which source it came from, with publication, edition, language and a quality tier. Failed conversions are flagged, not indexed as if they were sound.',
+  },
+  {
+    name: 'Clause-boundary chunking',
+    body: 'Documents are split along their own clause structure — the structure the authors wrote — not by fixed-length token windows. Every chunk carries its clause number, so a citation can name an exact location in the source document.',
+  },
+  {
+    name: 'Contextual enrichment',
+    body: 'A one-time pass writes each chunk a short preamble stating where it sits: publication, part, clause, subject. The pass is recorded, so it replays exactly after any rebuild — enrichment lives in the index, not in transient artifacts.',
+  },
+  {
+    name: 'Typed units',
+    body: 'Tables, formulas and figures are extracted as first-class retrievable objects alongside the prose. A formula keeps its source notation and renders as mathematics; a table keeps its columns and rows as data; a figure keeps its original drawing.',
+  },
+  {
+    name: 'Terminology and the bibliographic registry',
+    body: 'Defined terms link to the clauses that define them, across the organization’s vocabularies and glossaries. A bibliographic registry organizes publication families with their editions and supersession links, so “which edition applies” is answered from the record, not by inference.',
+  },
+  {
+    name: 'The model plane',
+    body: 'Where the publications carry machine-readable models — typed attributes, constraints with numeric limits, calculations, test sequences — the models themselves are indexed. This is what allows the system to execute a rule instead of quoting it.',
+  },
+]
+
+const serving = [
+  {
+    name: 'Understanding',
+    body: 'A language model reads the question first: its language, any publication or edition it names, whether it asks about a defined term, what earlier turns contribute. No keyword rules — the same model makes these judgements for every question.',
+  },
+  {
+    name: 'Retrieval',
+    body: 'The question expands into several search forms — reworded variants and a draft answer as an additional key — run against a hybrid dense-plus-lexical index, fused by rank. The terminology graph adds its own candidates for defined terms.',
+  },
+  {
+    name: 'Ranking over structure',
+    body: 'A cross-encoder orders the candidates. Because the corpus is a clause tree, a clause’s score also blends its neighbours’: a section whose clauses are collectively relevant rises. Evidence reaches the answer model in document reading order, and near-duplicates from one clause chain collapse.',
+  },
+  {
+    name: 'Vocabulary binding',
+    body: 'Everyday words rarely match defined terms. The terminology index links the user’s phrasing to candidate terms; the answer then leads with the corpus’s own term, quotes its definition and cites where it is defined.',
+  },
+  {
+    name: 'Answering under contract',
+    body: 'The answer is generated from the retrieved passages only, under a contract that requires an inline citation on every claim and verbatim quotes for normative values. Typed objects render from source; the model never retypes them.',
+  },
+  {
+    name: 'Checking',
+    body: 'A judge grades whether the passages support the answer; a second check scores faithfulness. Failed checks trigger one corrected retry. Answers that remain unsupported are withheld rather than shown.',
+  },
+  {
+    name: 'Conformance by execution',
+    body: 'A question that names a machine-checkable rule gets the rule evaluated. Values bind to the rule’s parameters, the check runs deterministically, and the verdict — with the arithmetic shown — is attached as data the model must present faithfully.',
+  },
+]
+---
+
+<BaseLayout
+  title="How it works"
+  description="From publications to knowledge to answers: the corpus pipeline, the retrieval stages, the answer contract, conformance by execution, and the measurement gates."
+>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pt-16">
+      <p class="eyebrow"><span class="tick"></span>How it works</p>
+      <h1 class="mt-4 max-w-3xl font-serif text-[2.2rem] font-medium leading-[1.1] tracking-[-0.01em] sm:text-[2.9rem]">
+        What happens between a question and its answer.
+      </h1>
+      <p class="mt-5 max-w-2xl text-[1.04rem] leading-relaxed text-ink-soft">
+        The pipeline runs in one direction and every stage leaves a record. This page describes the machinery in
+        product terms; the reference deployment carries the same pages for its own corpus.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <SectionHead
+        eyebrow="Corpus construction"
+        title="From publications to knowledge"
+        lede="Before any question is answered, the corpus is built into a body of knowledge the system can be held accountable to."
+      />
+      <ol class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-2">
+        {
+          building.map((s, i) => (
+            <li class="bg-surface p-7">
+              <p class="font-mono text-[0.72rem] text-blue">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="mt-3 font-serif text-[1.2rem] font-medium">{s.name}</h3>
+              <p class="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-5 text-sm text-ink-faint">
+        All of it meets in one vector index under a declared contract: a single validated boundary enforces the wire
+        schema and the legal metadata shapes, and public and access-restricted content live in physically separate
+        indexes — isolation that cannot fail through a forgotten filter.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <SectionHead
+        eyebrow="Serving"
+        title="What happens when you ask"
+        lede="Seven stages, in order — each one measurable."
+      />
+      <ol class="mt-10 space-y-0">
+        {
+          serving.map((s, i) => (
+            <li class="grid gap-3 border-t border-rule py-6 sm:grid-cols-[4.5rem_minmax(0,1fr)_minmax(0,1.4fr)] sm:gap-6">
+              <p class="font-mono text-[0.85rem] font-medium text-blue">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="font-serif text-[1.2rem] font-medium leading-snug">{s.name}</h3>
+              <p class="text-[0.92rem] leading-relaxed text-ink-soft">{s.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <SectionHead
+        eyebrow="The contract, live"
+        title="A claim you can check mechanically"
+        lede="The deterministic core of the answer contract, running in this page: a quoted span must appear verbatim in a served passage, or the answer is withheld."
+      />
+      <div class="mt-10 border border-rule bg-surface p-6 sm:p-8">
+        <QuoteVerifier client:load />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <SectionHead
+        eyebrow="Beyond answering"
+        title="Verification the reader can invoke"
+      />
+      <div class="mt-10 grid gap-10 md:grid-cols-3">
+        <div>
+          <h3 class="font-serif text-[1.15rem] font-medium">Provable absence</h3>
+          <p class="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">
+            The service can enumerate a standard’s entire machine-readable model and return a certificate of absence —
+            how many nodes were examined, that none matched, what scope the proof covered. A refusal states that the
+            system found nothing; a certificate states that it examined everything.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[1.15rem] font-medium">Answer verification</h3>
+          <p class="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">
+            Any answer — from this service or another — can be checked against the corpus. Deterministic checks verify
+            quotes and object references; a judged faithfulness score is reported separately and labeled as judged.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[1.15rem] font-medium">Measurement gates</h3>
+          <p class="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">
+            A golden question set with expected citations runs end to end — three times — before any change is
+            promoted, with paraphrase and leakage probes. Grading is deterministic wherever possible; the gates run
+            only against a settled system.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <SectionHead eyebrow="Platform" title="Portable by design" />
+      <div class="mt-8 max-w-3xl space-y-4 text-[0.95rem] leading-relaxed text-ink-soft">
+        <p>
+          The reference deployment runs on Cloudflare — Workers, Vectorize, D1, KV, R2 — with reference adapters in the
+          engine. But the platform is an implementation detail: the design runs anywhere that provides model serving,
+          vector search and durable storage.
+        </p>
+        <p>
+          All models are open-weight. No corpus data is sent to third-party services, and the system has no dependency
+          on a proprietary model provider. Different roles use different models, chosen for the job.
+        </p>
+        <p>
+          The narrative for the reference corpus, written for its readers, is at
+          <a href={SITE.reference.howItWorksUrl} class="text-blue underline decoration-rule underline-offset-4 hover:decoration-keyline"
+            >{SITE.reference.name} — how it works ↗</a
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

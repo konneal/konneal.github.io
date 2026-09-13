@@ -1,0 +1,150 @@
+---
+// Official artwork from branding/logo, embedded as-is (no recoloring).
+// The mark's inner markup is built once and injected into each lockup.
+// `uid` suffixes gradient ids so instances can coexist; the mark is never
+// hydrated, so randomness is safe.
+interface Props {
+  variant?: 'light' | 'dark' | 'mono'
+  lockup?: 'mark' | 'primary' | 'domain' | 'credit'
+  class?: string
+}
+const { variant = 'light', lockup = 'mark', class: className = '' } = Astro.props
+const uid = Math.random().toString(36).slice(2, 7)
+
+// [offset, color, opacity]
+const stops: [number, string, number][] =
+  variant === 'dark'
+    ? [
+        [0.28, '#c1cad3', 1],
+        [0.37, '#bdc8d2', 0.98],
+        [0.49, '#b3c2d2', 0.91],
+        [0.62, '#a2b9d1', 0.79],
+        [0.76, '#8aadd0', 0.63],
+        [0.92, '#6c9dcf', 0.42],
+        [1, '#5a94cf', 0.3],
+      ]
+    : [
+        [0.28, '#253d91', 1],
+        [0.4, '#253d91', 0.96],
+        [0.56, '#253d91', 0.85],
+        [0.74, '#253d91', 0.66],
+        [0.94, '#253d91', 0.4],
+        [1, '#253d91', 0.3],
+      ]
+
+const gradients = [
+  { id: `g${uid}1`, x1: 26.76, y1: 47.46, x2: 132.93, y2: 108.76 },
+  { id: `g${uid}2`, x1: 46.91, y1: 68.66, x2: 153.09, y2: 129.96 },
+  { id: `g${uid}3`, x1: 67.07, y1: 89.86, x2: 173.24, y2: 151.16 },
+]
+
+const keyline = variant === 'dark' ? '#447cbf' : '#fff'
+const isMono = variant === 'mono'
+
+const slabs = [
+  {
+    poly: '3.55 117.42 31.75 38.81 156.14 38.81 127.94 117.42 3.55 117.42',
+    key: 'm152.59,41.31l-26.41,73.61H7.11l26.41-73.61h119.07m7.11-5H29.99L0,119.92h129.7l29.99-83.61h0Z',
+  },
+  {
+    poly: '23.71 138.61 51.91 60.01 176.29 60.01 148.09 138.61 23.71 138.61',
+    key: 'm172.74,62.51l-26.41,73.61H27.26l26.41-73.61h119.07m7.11-5H50.15l-29.99,83.61h129.7l29.99-83.61h0Z',
+  },
+  {
+    poly: '43.86 159.81 72.06 81.2 196.45 81.2 168.25 159.81 43.86 159.81',
+    key: 'm192.89,83.7l-26.41,73.61H47.41l26.41-73.61h119.07m7.11-5H70.3l-29.99,83.61h129.7l29.99-83.61h0Z',
+  },
+]
+
+const stopTags = stops.map(([o, c, a]) => `<stop offset="${o}" stop-color="${c}" stop-opacity="${a}"/>`).join('')
+const defs = isMono
+  ? ''
+  : `<defs>${gradients
+      .map(
+        (g) =>
+          `<linearGradient id="${g.id}" x1="${g.x1}" y1="${g.y1}" x2="${g.x2}" y2="${g.y2}" gradientUnits="userSpaceOnUse">${stopTags}</linearGradient>`,
+      )
+      .join('')}</defs>`
+
+const slabFill = (i: number) => (isMono ? '#1d1d1b' : `url(#${gradients[i].id})`)
+const depth = [1, 0.68, 0.38]
+
+const markInner =
+  defs +
+  slabs
+    .map((s, i) => {
+      const body = `<polygon points="${s.poly}" fill="${slabFill(i)}"/><path d="${s.key}" fill="${keyline}"/>`
+      return i === 0 ? body : `<g opacity="${depth[i]}">${body}</g>`
+    })
+    .join('')
+---
+
+{
+  lockup === 'mark' && (
+    <svg viewBox="0 0 200 200" aria-hidden="true" class={className}>
+      <Fragment set:html={markInner} />
+    </svg>
+  )
+}
+
+{
+  lockup === 'primary' && (
+    <span
+      class={`inline-flex items-center ${className}`}
+      style="--mark-size: 2.75rem; gap: calc(var(--mark-size) * 0.15)"
+    >
+      <svg viewBox="0 0 200 200" aria-hidden="true" style="height: var(--mark-size); width: var(--mark-size)" class="flex-none">
+        <Fragment set:html={markInner} />
+      </svg>
+      <span
+        class="font-sans font-medium lowercase"
+        style="font-size: calc(var(--mark-size) * 0.4); letter-spacing: -0.005em; line-height: 1"
+      >
+        konneal
+      </span>
+    </span>
+  )
+}
+
+{
+  lockup === 'domain' && (
+    <span
+      class={`inline-flex items-center ${className}`}
+      style="--mark-size: 2.75rem; gap: calc(var(--mark-size) * 0.15)"
+    >
+      <svg viewBox="0 0 200 200" aria-hidden="true" style="height: var(--mark-size); width: var(--mark-size)" class="flex-none">
+        <Fragment set:html={markInner} />
+      </svg>
+      <span class="inline-flex items-baseline" style="gap: 0.12em; line-height: 1">
+        <span
+          class="font-sans font-medium lowercase"
+          style="font-size: calc(var(--mark-size) * 0.4); letter-spacing: -0.005em"
+        >
+          konneal
+        </span>
+        <span class="font-mono" style="font-size: calc(var(--mark-size) * 0.32); opacity: 0.6">.org</span>
+      </span>
+    </span>
+  )
+}
+
+{
+  lockup === 'credit' && (
+    <span class={`inline-flex items-center ${className}`} style="gap: 0.55em">
+      <span class="font-sans" style="font-size: 0.95rem; opacity: 0.6">Powered by</span>
+      <span class="inline-flex items-center" style="--mark-size: 1.4em; gap: calc(var(--mark-size) * 0.15)">
+        <svg
+          viewBox="0 0 200 200"
+          aria-hidden="true"
+          style="height: var(--mark-size); width: var(--mark-size)"
+          class="flex-none self-center"
+        >
+          <Fragment set:html={markInner} />
+        </svg>
+        <span class="font-sans font-medium lowercase" style="font-size: 1rem; letter-spacing: -0.005em; line-height: 1">
+          konneal
+        </span>
+      </span>
+    </span>
+  )
+}

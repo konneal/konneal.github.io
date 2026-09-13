@@ -1,0 +1,111 @@
+---
+// The annealment staircase — capability by corpus representation.
+// Treads carry the mark's own shear; scores are the measured OIML R 60
+// family results (18 witness-graded probes).
+interface Tread {
+  label: string
+  score: string
+  detail: string
+  fill: string
+  text: string
+  h: number
+}
+const treads: Tread[] = [
+  { label: 'plain text', score: '2/18', detail: 'topical lookup — cannot even cite', fill: 'rgba(37,61,145,0.16)', text: 'var(--color-blue)', h: 2.2 },
+  { label: 'clause-anchored', score: '3/18', detail: 'locate, with citation', fill: 'rgba(37,61,145,0.30)', text: 'var(--color-blue)', h: 2.7 },
+  { label: 'typed units', score: '6/18', detail: 'tables and formulas as objects', fill: 'rgba(37,61,145,0.52)', text: '#fff', h: 4.0 },
+  { label: 'machine models', score: '13/18', detail: 'constraints, calculations, test sequences', fill: 'rgba(37,61,145,0.82)', text: '#fff', h: 6.9 },
+  { label: 'execution', score: 'computed', detail: 'verdicts, not quotes', fill: 'linear-gradient(to top, #253d91, #447cbf)', text: '#fff', h: 8.6 },
+]
+---
+
+<div class="staircase">
+  <ol class="stair-row" aria-label="Capability by corpus representation">
+    {
+      treads.map((t, i) => (
+        <li class="stair-col" style={`--i: ${i}`}>
+          <div class="stair-tread-wrap">
+            <div class="stair-tread" style={`height: ${t.h}rem; background: ${t.fill}; color: ${t.text}`}>
+              <span class="stair-score">{t.score}</span>
+            </div>
+          </div>
+          <p class="stair-label">{t.label}</p>
+          <p class="stair-detail">{t.detail}</p>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<p class="sr-only">
+  <ol>
+    <li>Plain text: 2 of 18 probes — topical lookup, cannot cite.</li>
+    <li>Clause-anchored documents: 3 of 18 — locate with citation.</li>
+    <li>Typed units: 6 of 18 — tables and formulas as objects.</li>
+    <li>Machine-readable models: 13 of 18 — constraints, calculations, test sequences.</li>
+    <li>Execution: computed verdicts rather than quotes.</li>
+  </ol>
+</p>
+
+<style>
+  .stair-row {
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(0.35rem, 1.6vw, 1.1rem);
+    border-bottom: 1px solid var(--color-ink);
+    padding-bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .stair-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .stair-tread-wrap {
+    overflow: visible;
+  }
+  .stair-tread {
+    transform: skewX(var(--shear));
+    transform-origin: bottom left;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    animation: tread-in 0.65s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation-delay: calc(0.28s + var(--i) * 0.13s);
+    transform-origin: bottom center;
+  }
+  .stair-score {
+    transform: skewX(19.75deg);
+    font-family: var(--font-mono);
+    font-size: clamp(0.62rem, 1.3vw, 0.78rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .stair-label {
+    margin-top: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-ink);
+    white-space: nowrap;
+  }
+  .stair-detail {
+    margin-top: 0.25rem;
+    font-size: 0.76rem;
+    line-height: 1.45;
+    color: var(--color-ink-faint);
+  }
+  @media (max-width: 640px) {
+    .stair-detail {
+      display: none;
+    }
+    .stair-label {
+      white-space: normal;
+    }
+  }
+</style>
