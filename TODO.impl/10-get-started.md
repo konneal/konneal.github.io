@@ -25,10 +25,10 @@ filled in) → profile declaration (you own it) → build with gated
 measurement against your corpus → white-label launch, gates on every
 change thereafter.
 
-The contact slot is intentionally absent until a real address
-exists; the page ends at the live reference deployment.
+Contact and pricing are Ribose corporate (see 13-ribose-commercial.md):
+the page ends with Contact Ribose + the live reference deployment.
 
 ## Acceptance
 
-Three profiles with asset tags; four numbered engagement steps; no
-invented contact; the non-Metanorma note is one sentence, positive.
+Three profiles with asset tags; four numbered engagement steps;
+Contact Ribose CTA; the non-Metanorma note is one sentence, positive.

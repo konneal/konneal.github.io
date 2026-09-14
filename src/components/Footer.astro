@@ -25,6 +25,7 @@ const columns = [
       { label: 'About', href: '/about/' },
       { label: 'Deployments', href: '/deployments/' },
       { label: 'Get started', href: '/get-started/' },
+      { label: `${SITE.company.name} ↗`, href: SITE.company.url },
     ],
   },
   {
@@ -70,7 +71,11 @@ const columns = [
     <div
       class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-[0.8rem] text-ramp-hi/55 sm:flex-row sm:items-center sm:justify-between"
     >
-      <p>© {year} Konneal · konneal.org</p>
+      <p>
+        © {year}
+        <a href={SITE.company.url} class="hover:text-ramp-hi" rel="noopener">{SITE.company.name}</a>
+        · konneal.org
+      </p>
       <p class="font-mono text-[0.72rem]">Answers are cited to the clause; verdicts are computed from the rule.</p>
     </div>
   </div>

@@ -3,6 +3,10 @@ export const SITE = {
   url: 'https://www.konneal.org',
   description:
     'Konneal anneals a standards corpus into structure a machine can traverse and compute — measurable, citable, executable — and serves it as a question-answering service under your own brand.',
+  company: {
+    name: 'Ribose Inc.',
+    url: 'https://www.ribose.com',
+  },
   reference: {
     name: 'OIML SMART AI',
     url: 'https://ai.oimlsmart.org',

@@ -35,8 +35,9 @@ never duplicated.
    deployment" on Deployments. Its numbers appear nowhere else. The
    header link is the instance URL (ai.oimlsmart.org), not the org.
 5. OCR is absent from the story entirely.
-6. No invented facts: no contact address, no pricing, no dates on
-   roadmap items. Illustrative demos are labeled as illustrative.
+6. No invented facts: no dates on roadmap items, no numeric pricing
+   (pricing is “Contact Ribose”). Illustrative demos are labeled as
+   illustrative. Commercial path is Ribose Inc. (see 13).
 7. Asset names are exactly: Metanorma, Pubid, Relaton, Glossarist,
    Lutaml, Primmel.
 

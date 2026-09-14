@@ -20,6 +20,4 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [10](10-get-started.md) | Get started: adoption profiles + engagement | done |
 | [11](11-about.md) | About: name, suite, lineage, principles | done |
 | [12](12-verify-deploy.md) | Verify, commit, push, confirm deploy | done |
-
-Pending external inputs (do not invent): a contact address for
-deployment inquiries; pricing; public docs (post trademark screening).
+| [13](13-ribose-commercial.md) | Ribose commercial path (trademark cleared; pricing = contact Ribose) | done |
