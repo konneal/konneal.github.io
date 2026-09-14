@@ -33,6 +33,7 @@ export const NAV_GROUPS = [
 ]
 
 export const NAV_FLAT = [
+  { label: 'Get started', href: '/get-started/' },
   { label: 'Deployments', href: '/deployments/' },
   { label: 'About', href: '/about/' },
 ]
@@ -381,6 +382,33 @@ export const ENGAGEMENT = [
     step: '04',
     name: 'Launch, white-labeled',
     body: 'Your publications, your terminology, your frontend — with the gates running on every change thereafter.',
+  },
+]
+
+export const PACKAGES = [
+  {
+    step: '01',
+    cmd: 'npm create @konneal/publisher my-sdo',
+    name: 'Scaffold the deployment',
+    body: 'An interview asks for the publisher\'s facts — id, name, domains, identity issuer, first dataset — then writes the whole skeleton: profile/*.yaml (the single edit surface), the ten-line worker entry that injects the profile into the engine, the Cloudflare wrangler template, and the profile codegen. Every generated file is ordinary, reviewable code; the scaffolder never runs again.',
+  },
+  {
+    step: '02',
+    cmd: 'npm install && npm run gen:profile',
+    name: 'Declare the corpus and generate the profile',
+    body: 'profile/corpora.yaml names the corpus repository. Every edit to a profile file regenerates the committed profile.gen.ts; a drift test keeps both sides honest.',
+  },
+  {
+    step: '03',
+    cmd: 'python -m ingest.cli parse | embed | upsert',
+    name: 'Ingest the corpus',
+    body: 'The engine\'s ingest CLI parses the corpus, embeds it and upserts the Vectorize index. One-time cost, bounded by corpus size.',
+  },
+  {
+    step: '04',
+    cmd: 'npm run deploy',
+    name: 'Serve under your brand',
+    body: 'Create the Vectorize/KV/D1 resources (wrangler prints the ids), fill them into wrangler.toml, deploy. The optional frontend starts from @konneal/ui-starter — theme tokens, chrome and conversation state are yours; the answer contract ships from @konneal/client.',
   },
 ]
 
