@@ -7,13 +7,13 @@ import { ADOPTION, ENGAGEMENT, SITE } from '~/data/site'
 
 <BaseLayout
   title="Get started"
-  description="Adoption follows what you already have: a Metanorma library is enough to begin, every further asset raises the annealment, and Primmel turns on execution."
+  description="Adoption starts with a Metanorma library; every further asset — Pubid, Relaton, Glossarist, Lutaml, Primmel — raises the annealment."
 >
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pt-16">
       <p class="eyebrow"><span class="tick"></span>Get started</p>
       <h1 class="mt-4 max-w-3xl font-sans text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.01em] sm:text-[2.7rem]">
-        Start from what you already have.
+        Adoption starts with a Metanorma library.
       </h1>
       <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-soft">
         There is no qualification exercise and no migration project to pass first. Adoption follows the assets your
@@ -24,7 +24,11 @@ import { ADOPTION, ENGAGEMENT, SITE } from '~/data/site'
 
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-      <SectionHead eyebrow="Adoption profiles" title="Three ways to arrive" lede="Whichever profile matches your organization, the next step is the same conversation." />
+      <SectionHead
+        eyebrow="Adoption"
+        title="Adoption profiles"
+        lede="Match your organization to what it already has; the engagement steps are the same for all three profiles."
+      />
       <div class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule lg:grid-cols-3">
         {
           ADOPTION.map((p) => (
@@ -55,9 +59,9 @@ import { ADOPTION, ENGAGEMENT, SITE } from '~/data/site'
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <SectionHead
-        eyebrow="Engagement"
-        title="The same four steps, every time"
-        lede="The process is an operation, not a negotiation: measured at every step, owned by your organization at every step."
+        eyebrow="Process"
+        title="Engagement"
+        lede="Each step is measured, and each outcome — profile, corpus, deployment — belongs to your organization."
       />
       <ol class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-2 lg:grid-cols-4">
         {

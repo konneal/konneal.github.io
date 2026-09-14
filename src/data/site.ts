@@ -2,7 +2,7 @@ export const SITE = {
   name: 'Konneal',
   url: 'https://www.konneal.org',
   description:
-    'Konneal anneals a standards corpus into structure a machine can traverse and compute — measurable, citable, executable — and serves it as a question-answering service under your own brand.',
+    'Konneal serves a standards organization’s publications as a question-answering service: answers cited to the exact clause, and conformance decided by executing machine-readable rules.',
   company: {
     name: 'Ribose Inc.',
     url: 'https://www.ribose.com',
@@ -344,7 +344,7 @@ export const ADOPTION = [
   {
     profile: 'You author in Metanorma',
     assets: ['metanorma'] as AssetId[],
-    body: 'You already qualify. Your library\'s clause structure, typed tables and formulas carry the grounded answering surface, held to the gates, with identifiers served through slug codecs until a formal scheme is declared.',
+    body: 'Your library\'s clause structure, typed tables and formulas carry the grounded answering surface, held to the gates, with identifiers served through slug codecs until a formal scheme is declared.',
     path: 'Declare the profile, run the annealment passes, deploy under your brand.',
   },
   {
