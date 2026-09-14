@@ -22,3 +22,4 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [12](12-verify-deploy.md) | Verify, commit, push, confirm deploy | done |
 | [13](13-ribose-commercial.md) | Ribose commercial path (trademark cleared; pricing = contact Ribose) | done |
 | [14](14-copy-audit.md) | Copy audit: empty catchphrases removed | done |
+| [15](15-no-catchy-phrases.md) | Copy pass: no catchy phrases | done |

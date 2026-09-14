@@ -90,7 +90,7 @@ export const INVENTORY = [
   },
   {
     asset: 'primmel' as AssetId,
-    gets: 'Execution: verdicts computed with the arithmetic shown, counterfactuals evaluated, absence proven.',
+    gets: 'Execution: verdicts computed with the arithmetic shown, counterfactuals evaluated, and certificates of absence returned.',
   },
 ]
 
@@ -131,7 +131,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
   {
     id: 'grounded',
     name: 'Grounded answering',
-    blurb: 'Answers that carry their own evidence, so a member can act on them.',
+    blurb: 'Answers whose every claim carries a citation.',
     features: [
       {
         name: 'Clause-cited answers',
@@ -162,7 +162,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
   {
     id: 'typed',
     name: 'Typed rendering',
-    blurb: 'Objects rendered from source, so nothing is retyped by a model on the way to the member.',
+    blurb: 'Tables, formulas and figures served from the source objects.',
     features: [
       {
         name: 'Tables as data',
@@ -193,7 +193,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
   {
     id: 'execution',
     name: 'Execution',
-    blurb: 'Rules that are evaluated rather than quoted, and answers that can be checked.',
+    blurb: 'Machine-checkable rules evaluated with the arithmetic shown, and answers that can be verified.',
     features: [
       {
         name: 'Computed verdicts',

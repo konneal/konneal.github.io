@@ -73,7 +73,7 @@ const serving = [
     <div class="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pt-16">
       <p class="eyebrow"><span class="tick"></span>How it works</p>
       <h1 class="mt-4 max-w-3xl font-sans text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.01em] sm:text-[2.7rem]">
-        Assets, passes, gates.
+        How the system works.
       </h1>
       <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-soft">
         Three words carry the whole machinery. The <strong class="font-medium text-ink">assets</strong> are what your
@@ -163,7 +163,7 @@ const serving = [
       <SectionHead
         eyebrow="Gates"
         title="What decides whether anything ships"
-        lede="What ships is what the golden suites passed."
+        lede="A golden suite decides whether a change ships."
       />
       <div class="mt-8 max-w-3xl space-y-4 text-[0.95rem] leading-relaxed text-ink-soft">
         <p>
@@ -187,7 +187,7 @@ const serving = [
 
   <section>
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-      <SectionHead eyebrow="Platform" title="The platform is an implementation detail" />
+      <SectionHead eyebrow="Platform" title="Platform and models" />
       <div class="mt-8 max-w-3xl space-y-4 text-[0.95rem] leading-relaxed text-ink-soft">
         <p>
           All models are open-weight. No corpus data is sent to third-party services, and the system has no dependency
@@ -195,8 +195,7 @@ const serving = [
         </p>
         <p>
           The reference deployment runs on Cloudflare — Workers, Vectorize, D1, KV, R2 — with reference adapters in
-          the engine. The platform is an implementation detail: the design runs anywhere that provides model serving,
-          vector search and durable storage.
+          the engine. The design runs anywhere that provides model serving, vector search and durable storage.
         </p>
         <p>
           The narrative for the reference corpus, written for its readers, is at
