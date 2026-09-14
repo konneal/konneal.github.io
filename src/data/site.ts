@@ -29,7 +29,7 @@ export type AssetId = 'metanorma' | 'pubid' | 'relaton' | 'glossarist' | 'lutaml
 export const ASSETS: Record<AssetId, { name: string; what: string }> = {
   metanorma: {
     name: 'Metanorma',
-    what: 'Your authored library: documents written with clause structure, typed tables, formulas and figures.',
+    what: 'Your authored library holds documents written with clause structure, with typed tables, formulas and figures.',
   },
   pubid: {
     name: 'Pubid',
@@ -37,19 +37,19 @@ export const ASSETS: Record<AssetId, { name: string; what: string }> = {
   },
   relaton: {
     name: 'Relaton',
-    what: 'Your bibliographic records: publication families, editions and supersession links.',
+    what: 'Your bibliographic records carry publication families, editions and supersession links.',
   },
   glossarist: {
     name: 'Glossarist',
-    what: 'Your terminology: defined concepts, registers and multilingual spellings.',
+    what: 'Your terminology collection holds defined concepts, registers and multilingual spellings.',
   },
   lutaml: {
     name: 'Lutaml',
-    what: 'Your structured models, served as first-class objects.',
+    what: 'Your structured models are served as first-class objects.',
   },
   primmel: {
     name: 'Primmel',
-    what: 'Your machine-readable models of the rules: constraints, calculations and test sequences.',
+    what: 'Your machine-readable models of the rules carry constraints, calculations and test sequences.',
   },
 }
 
@@ -57,27 +57,27 @@ export const INVENTORY = [
   {
     asset: 'metanorma' as AssetId,
     baseline: true,
-    gets: 'A working answering service: answers cited to the exact clause, with tables, formulas and figures rendered from source.',
+    gets: 'You get a working answering service in which answers are cited to the exact clause, and tables, formulas and figures are rendered from source.',
   },
   {
     asset: 'pubid' as AssetId,
-    gets: 'Identifiers understood natively: a question naming a publication steers retrieval, and citations render in your identifier scheme.',
+    gets: 'Identifiers are understood natively: a question naming a publication steers retrieval, and citations render in your identifier scheme.',
   },
   {
     asset: 'relaton' as AssetId,
-    gets: 'Edition awareness: publication families, supersession links, and answers steered to the current edition.',
+    gets: 'The registry carries publication families and supersession links, and answers are steered to the edition in force.',
   },
   {
     asset: 'glossarist' as AssetId,
-    gets: 'Vocabulary binding: everyday words resolved to your defined terms, in register, across languages.',
+    gets: 'Everyday words are resolved to your defined terms, in register, across languages.',
   },
   {
     asset: 'lutaml' as AssetId,
-    gets: 'Structured models indexed and served as first-class objects.',
+    gets: 'Structured models are indexed and served as first-class objects.',
   },
   {
     asset: 'primmel' as AssetId,
-    gets: 'Execution: verdicts computed with the arithmetic shown, counterfactuals evaluated, and certificates of absence returned.',
+    gets: 'Verdicts are computed with the arithmetic shown, counterfactuals are evaluated, and certificates of absence are returned.',
   },
 ]
 
@@ -86,17 +86,17 @@ export const SUITE = [
     layer: 'Authored',
     tool: 'Metanorma',
     href: 'https://www.metanorma.org',
-    what: 'Documents written with real structure — clause anchors, typed tables, formulas and figures — so the corpus has a spine to anneal around.',
+    what: 'Documents are written with real structure — clause anchors, typed tables, formulas and figures — so the corpus has a spine to anneal around.',
   },
   {
     layer: 'Modelled',
     tool: 'Primmel',
-    what: 'The rules themselves written as machines: typed attributes, constraints with numeric limits, calculations and ordered test sequences.',
+    what: 'The rules themselves are written as machines: typed attributes, constraints with numeric limits, calculations and ordered test sequences.',
   },
   {
     layer: 'Served',
     tool: 'Konneal',
-    what: 'Annealment passes over what you have written, retrieval over the structure, the answer contract, and the gates that keep every release honest.',
+    what: 'Konneal runs annealment passes over what you have written, retrieves over the structure, enforces the answer contract, and holds every release to the gates.',
   },
 ]
 
@@ -118,7 +118,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
   {
     id: 'grounded',
     name: 'Grounded answering',
-    blurb: 'Answers whose every claim carries a citation.',
+    blurb: 'Every claim in an answer carries a citation.',
     features: [
       {
         name: 'Clause-cited answers',
@@ -149,7 +149,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
   {
     id: 'typed',
     name: 'Typed rendering',
-    blurb: 'Tables, formulas and figures served from the source objects.',
+    blurb: 'Tables, formulas and figures are served from the source objects.',
     features: [
       {
         name: 'Tables as data',
@@ -180,7 +180,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
   {
     id: 'execution',
     name: 'Execution',
-    blurb: 'Machine-checkable rules evaluated with the arithmetic shown, and answers that can be verified.',
+    blurb: 'Machine-checkable rules are evaluated with the arithmetic shown, and answers can be verified.',
     features: [
       {
         name: 'Computed verdicts',
@@ -277,7 +277,7 @@ export const USE_CASES: UseCase[] = [
 export const ROADMAP = [
   {
     name: 'Semantic edition diffs',
-    body: 'What changed between two editions, stated at the level of requirements and limits rather than as text differences.',
+    body: 'The service states what changed between two editions at the level of requirements and limits, rather than as text differences.',
   },
   {
     name: 'Committee impact analysis',
