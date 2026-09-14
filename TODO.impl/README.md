@@ -19,7 +19,7 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [09](09-deployments.md) | Deployments: the one case study + white label | done |
 | [10](10-get-started.md) | Get started: adoption profiles + engagement | done |
 | [11](11-about.md) | About: name, suite, lineage, principles | done |
-| [12](12-verify-deploy.md) | Verify, commit, push, confirm deploy | in flight |
+| [12](12-verify-deploy.md) | Verify, commit, push, confirm deploy | done |
 
 Pending external inputs (do not invent): a contact address for
 deployment inquiries; pricing; public docs (post trademark screening).

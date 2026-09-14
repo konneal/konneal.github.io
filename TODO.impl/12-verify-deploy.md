@@ -1,6 +1,6 @@
 # 12 — Verify, commit, push, confirm deploy
 
-**Status:** open — completes when the live deploy serves all nine routes
+**Status:** done — commit 234eb9e deployed; workflow 34809357098 green; all nine routes 200 on https://www.konneal.org (2026-09-14)
 
 1. `npm run check` — 0 errors.
 2. `npm run build` — all pages emit; sitemap.
