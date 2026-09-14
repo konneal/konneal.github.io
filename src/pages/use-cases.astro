@@ -1,0 +1,116 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import AssetTag from '~/components/AssetTag.astro'
+import VerdictPlayground from '~/components/VerdictPlayground.vue'
+import QuoteVerifier from '~/components/QuoteVerifier.vue'
+import { ROADMAP, USE_CASES } from '~/data/site'
+---
+
+<BaseLayout
+  title="Use cases"
+  description="The jobs Konneal gets done: answering from the corpus, deciding conformance by execution, proving absence, and checking any answer."
+>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pt-16">
+      <p class="eyebrow"><span class="tick"></span>Use cases</p>
+      <h1 class="mt-4 max-w-3xl font-sans text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.01em] sm:text-[2.7rem]">
+        The jobs, demonstrated where they can be.
+      </h1>
+      <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-soft">
+        Each job below states the situation, what the service does, and what the member sees — with the assets that
+        power it. Where a job can be demonstrated deterministically, the demonstration runs on this page.
+      </p>
+    </div>
+  </section>
+
+  {
+    USE_CASES.map((uc) => (
+      <section class="border-b border-rule" id={uc.id}>
+        <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+          <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+            <div class="min-w-0">
+              <p class="flex flex-wrap items-center gap-2">
+                {uc.assets.map((a) => (
+                  <AssetTag id={a} />
+                ))}
+              </p>
+              <h2 class="mt-4 font-sans text-[1.55rem] font-semibold leading-tight">{uc.name}</h2>
+              <p class="mt-4 text-[0.95rem] leading-relaxed text-ink-soft">{uc.situation}</p>
+              <p class="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">
+                <span class="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-ink-faint">What the service does</span>
+                {' — '}
+                {uc.does}
+              </p>
+              <p class="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">
+                <span class="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-ink-faint">What the member sees</span>
+                {' — '}
+                {uc.sees}
+              </p>
+            </div>
+            <div class="min-w-0">
+              {uc.demo === 'anatomy' && (
+                <div class="flex h-full flex-col justify-center border border-rule bg-surface p-6">
+                  <p class="font-mono text-[0.68rem] uppercase tracking-[0.15em] text-ink-faint">The rendered form</p>
+                  <p class="mt-3 text-[0.92rem] leading-relaxed text-ink-soft">
+                    An answer arrives with inline citations such as
+                    <span class="cite-chip">R 60-1:2021 §4.4.2</span> on every claim; normative values appear as
+                    verbatim quotes; a citation opens the original document at the cited clause, with the clause
+                    highlighted.
+                  </p>
+                  <a href="/#what-members-see" class="mt-4 font-mono text-[0.78rem] text-blue hover:text-keyline">
+                    See the full anatomy → Home
+                  </a>
+                </div>
+              )}
+              {uc.demo === 'playground' && (
+                <div class="on-night border border-night bg-night p-6 sm:p-8">
+                  <VerdictPlayground client:load />
+                </div>
+              )}
+              {uc.demo === 'verifier' && (
+                <div class="border border-rule bg-surface p-6 sm:p-8">
+                  <QuoteVerifier client:load />
+                </div>
+              )}
+              {uc.demo === 'certificate' && (
+                <div class="flex h-full flex-col justify-center border border-rule bg-surface p-6">
+                  <p class="font-mono text-[0.68rem] uppercase tracking-[0.15em] text-ink-faint">
+                    Certificate of absence · illustrative
+                  </p>
+                  <pre class="mt-3 overflow-x-auto border border-rule bg-[#fbfcfe] p-4 font-mono text-[0.78rem] leading-relaxed text-ink-soft"><code>{`query      does the standard constrain packaging?
+enumerated  requirements  constraints  tests  terms
+result      0 matches in N nodes
+scope       the machine-readable model, in full
+conclusion  the property is absent — proven, not unfound`}</code></pre>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section>
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <p class="eyebrow"><span class="tick"></span>On the frontier</p>
+      <h2 class="mt-3 font-sans text-[1.5rem] font-semibold">In development</h2>
+      <div class="mt-8 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-3">
+        {
+          ROADMAP.map((r) => (
+            <article class="bg-surface p-6">
+              <h3 class="font-sans text-[1.05rem] font-semibold">{r.name}</h3>
+              <p class="mt-2 text-[0.88rem] leading-relaxed text-ink-soft">{r.body}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-sm text-ink-faint">
+        The frontier is measured before it ships; its definition and current state are on
+        <a href="/annealment/" class="text-blue underline decoration-rule underline-offset-4 hover:decoration-keyline"
+          >the annealment page</a
+        >.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,132 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import SectionHead from '~/components/SectionHead.astro'
+import Logo from '~/components/Logo.astro'
+
+const principles = [
+  {
+    name: 'The publisher owns everything that matters.',
+    body: 'The organization owns its content, its profile and its frontend. Konneal builds the databases and serves the API.',
+  },
+  {
+    name: 'Every release is measured.',
+    body: 'A golden question set with expected citations runs three times before any change is promoted. Nothing ships on vibes.',
+  },
+  {
+    name: 'The models are open-weight.',
+    body: 'No corpus data is sent to third-party services, and no part of the system depends on a proprietary model provider.',
+  },
+  {
+    name: 'A citation is a place you can go.',
+    body: 'Every answer names the publication, edition and clause behind it, and the citation opens the original document at that clause.',
+  },
+]
+---
+
+<BaseLayout
+  title="About"
+  description="Konneal is the serving layer of a suite in which standards are authored in Metanorma, modelled in Primmel, and served by Konneal."
+>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pt-16">
+      <p class="eyebrow"><span class="tick"></span>About</p>
+      <h1 class="mt-4 max-w-3xl font-sans text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.01em] sm:text-[2.7rem]">
+        Konneal serves what the suite writes.
+      </h1>
+      <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-soft">
+        Konneal is the serving layer of a suite in which standards are authored in Metanorma, modelled in Primmel, and
+        served by Konneal. It runs annealment passes over a corpus the organization has already authored, and turns it
+        into a question-answering service whose every answer carries its own evidence — and whose rules can be
+        executed, with the arithmetic shown.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <div>
+          <SectionHead eyebrow="The name" title="Konneal, decoded three ways" />
+          <ol class="mt-8 space-y-6">
+            <li class="grid gap-3 sm:grid-cols-[3.5rem_minmax(0,1fr)]">
+              <p class="font-mono text-[0.85rem] font-medium text-blue">01</p>
+              <div>
+                <h3 class="font-sans text-[1.05rem] font-semibold">K-onneal — knowledge annealment</h3>
+                <p class="mt-1.5 text-[0.92rem] leading-relaxed text-ink-soft">
+                  The method itself: repeated passes that add verified structure to a corpus until it becomes
+                  measurable, citable and executable.
+                </p>
+              </div>
+            </li>
+            <li class="grid gap-3 sm:grid-cols-[3.5rem_minmax(0,1fr)]">
+              <p class="font-mono text-[0.85rem] font-medium text-blue">02</p>
+              <div>
+                <h3 class="font-sans text-[1.05rem] font-semibold">Anneal — the metallurgy</h3>
+                <p class="mt-1.5 text-[0.92rem] leading-relaxed text-ink-soft">
+                  Heat treatment that hardens metal into a durable structure: soft becomes durable, prose becomes
+                  computable.
+                </p>
+              </div>
+            </li>
+            <li class="grid gap-3 sm:grid-cols-[3.5rem_minmax(0,1fr)]">
+              <p class="font-mono text-[0.85rem] font-medium text-blue">03</p>
+              <div>
+                <h3 class="font-sans text-[1.05rem] font-semibold">Konne(ction) — the joins</h3>
+                <p class="mt-1.5 text-[0.92rem] leading-relaxed text-ink-soft">
+                  The organization connects to its members, questions connect to clauses, answers connect to the
+                  original document.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="flex flex-col items-start justify-center gap-8 border border-rule bg-surface p-10">
+          <Logo variant="light" lockup="primary" />
+          <p class="text-[0.9rem] leading-relaxed text-ink-soft">
+            The mark is the suite in miniature: three layered sheared slabs — structure being added to structure, each
+            layer locked to the same shear. Authored, modelled, served.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <SectionHead eyebrow="Lineage" title="Proven in public before it was a product" />
+      <div class="mt-8 max-w-3xl space-y-4 text-[0.95rem] leading-relaxed text-ink-soft">
+        <p>
+          Konneal was born from a live public service. The engine began as the serving layer of a deployed,
+          publicly testable question-answering service over a real standards corpus, and was extracted into this
+          publisher-agnostic product with its history preserved — the same retrieval, the same answer contract, the
+          same verdict engine, and the same gates.
+        </p>
+        <p>
+          The method was not designed on a whiteboard; it was measured into existence. The annealment ladder and its
+          staircase are the recorded result of grading the same questions over successively richer representations of
+          the same corpus.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <SectionHead eyebrow="Principles" title="How we work" />
+      <div class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-2">
+        {
+          principles.map((p) => (
+            <article class="bg-surface p-7">
+              <h3 class="font-sans text-[1.05rem] font-semibold">{p.name}</h3>
+              <p class="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">{p.body}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="mt-10 flex flex-wrap gap-6 font-mono text-[0.8rem] text-blue">
+        <a href="/how-it-works/" class="hover:text-keyline">The machinery → How it works</a>
+        <a href="/deployments/" class="hover:text-keyline">The public proof → Deployments</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

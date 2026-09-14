@@ -2,40 +2,23 @@
 import BaseLayout from '~/layouts/BaseLayout.astro'
 import SectionHead from '~/components/SectionHead.astro'
 import Logo from '~/components/Logo.astro'
-import { SITE } from '~/data/site'
-
-const adoption = [
-  {
-    step: '01',
-    name: 'Bring your corpus',
-    body: 'Metanorma-authored documents enter with their full structure — clause anchors, typed units, models. Other sources join as their structure is verified; every chunk records its provenance.',
-  },
-  {
-    step: '02',
-    name: 'Declare your profile',
-    body: 'The publisher declares its profile: publication identifiers, terminology, model coverage, prompt templates and thresholds. The publisher owns the content, the profile and the frontend.',
-  },
-  {
-    step: '03',
-    name: 'Serve under your brand',
-    body: 'Konneal builds the databases and serves the API. The deployment is white-labeled to your organization, with a small credit beside your emblem.',
-  },
-]
+import { REFERENCE_STATS, SITE } from '~/data/site'
 ---
 
 <BaseLayout
   title="Deployments"
-  description="The Konneal engine in production: the OIML SMART AI reference deployment, white-labeled deployments for standards organizations, and the adoption path."
+  description="A public deployment you can question — the OIML SMART AI reference instance running the Konneal engine in production — and how your deployment carries your own brand."
 >
   <section class="border-b border-rule">
-    <div class="mx-auto max-w-6xl px-5 pb-14 pt-14 sm:px-8 sm:pt-16">
+    <div class="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pt-16">
       <p class="eyebrow"><span class="tick"></span>Deployments</p>
-      <h1 class="mt-4 max-w-3xl font-serif text-[2.2rem] font-medium leading-[1.1] tracking-[-0.01em] sm:text-[2.9rem]">
-        One engine, many standards bodies.
+      <h1 class="mt-4 max-w-3xl font-sans text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.01em] sm:text-[2.7rem]">
+        A public deployment you can question.
       </h1>
-      <p class="mt-5 max-w-2xl text-[1.04rem] leading-relaxed text-ink-soft">
-        Konneal is the publisher-agnostic serving layer: retrieval, the answer contract, verdicts and the measurement
-        gates, applied to each organization’s own corpus under its own name.
+      <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-soft">
+        The claims on this site are testable, because one deployment of the engine is public. It belongs to a real
+        standards organization, serves its real corpus, and runs the same gates on every change that your deployment
+        would run.
       </p>
     </div>
   </section>
@@ -45,56 +28,38 @@ const adoption = [
       <div class="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
         <div>
           <SectionHead
-            eyebrow="The reference"
-            title={`${SITE.reference.name} — live since the engine’s first promotion`}
-            lede="The public question-answering service of the International Organization of Legal Metrology: close to 900 publications, 9.3 million words, 9 languages — cited answers, computed verdicts, and the full measurement discipline, purely on open-weight models."
+            eyebrow="The reference instance"
+            title={SITE.reference.name}
+            lede="The public question-answering service of the International Organization of Legal Metrology, running the Konneal engine in production — cited answers, computed verdicts, and the full measurement discipline, purely on open-weight models."
           />
           <div class="mt-8 flex flex-wrap gap-4">
             <a
               href={SITE.reference.url}
-              class="border border-blue bg-blue px-5 py-2.5 font-mono text-[0.85rem] text-white transition-colors hover:bg-[#1c2f73]"
-            >
-              ai.oimlsmart.org ↗
+              class="border border-blue bg-blue px-5 py-2.5 font-mono text-[0.85rem] text-white transition-colors hover:bg-[#1c2f73]">
+              {SITE.reference.url.replace('https://', '')} ↗
             </a>
             <a
               href={SITE.reference.howItWorksUrl}
-              class="border border-rule bg-surface px-5 py-2.5 font-mono text-[0.85rem] text-blue transition-colors hover:border-keyline"
-            >
+              class="border border-rule bg-surface px-5 py-2.5 font-mono text-[0.85rem] text-blue transition-colors hover:border-keyline">
               How it works, for its readers ↗
             </a>
           </div>
-          <p class="mt-6 text-sm text-ink-faint">
-            The engine behind it — hybrid retrieval over clause-structured corpora, the answer contract, conformance
-            by execution, the evaluation gates — is the same package every deployment consumes. Promotion there is
-            gated by the same golden suites that grade the live service.
+          <p class="mt-6 max-w-xl text-sm leading-relaxed text-ink-faint">
+            The engine behind it — retrieval over clause-structured corpora, the answer contract, conformance by
+            execution, the evaluation gates — is the same package every deployment consumes, promoted through the same
+            golden suites that grade the live service.
           </p>
         </div>
         <div class="flex flex-col justify-center gap-8 border border-rule bg-surface p-8">
           <dl class="grid grid-cols-2 gap-x-6 gap-y-6 font-mono text-[0.78rem]">
-            <div>
-              <dt class="text-ink-faint">publications</dt>
-              <dd class="text-[1.3rem] font-medium text-blue">≈ 900</dd>
-            </div>
-            <div>
-              <dt class="text-ink-faint">words</dt>
-              <dd class="text-[1.3rem] font-medium text-blue">9.3 M</dd>
-            </div>
-            <div>
-              <dt class="text-ink-faint">languages</dt>
-              <dd class="text-[1.3rem] font-medium text-blue">9</dd>
-            </div>
-            <div>
-              <dt class="text-ink-faint">defined terms</dt>
-              <dd class="text-[1.3rem] font-medium text-blue">≈ 9 000</dd>
-            </div>
-            <div>
-              <dt class="text-ink-faint">bibliographic records</dt>
-              <dd class="text-[1.3rem] font-medium text-blue">5 707</dd>
-            </div>
-            <div>
-              <dt class="text-ink-faint">publication families</dt>
-              <dd class="text-[1.3rem] font-medium text-blue">224</dd>
-            </div>
+            {
+              REFERENCE_STATS.map(([label, value]) => (
+                <div>
+                  <dt class="text-ink-faint">{label}</dt>
+                  <dd class="text-[1.3rem] font-medium text-blue">{value}</dd>
+                </div>
+              ))
+            }
           </dl>
         </div>
       </div>
@@ -107,8 +72,8 @@ const adoption = [
         <div>
           <SectionHead
             eyebrow="White label"
-            title="“[SDO] Answers, powered by Konneal”"
-            lede="Each deployment carries the organization’s emblem and name; Konneal appears only in a small credit — the same discipline as the mark itself: present, precise, never loud."
+            title="Your deployment carries your name."
+            lede="A deployment is white-labeled to the organization: your publications, your terminology, your profile and your frontend. Konneal appears only in a small credit beside your emblem — present, precise, never above it."
           />
           <p class="mt-6 text-[0.95rem] leading-relaxed text-ink-soft">
             The credit lockup is specified in the brand: “Powered by” set in the regular weight at reduced ink, the
@@ -125,22 +90,16 @@ const adoption = [
 
   <section>
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-      <SectionHead eyebrow="Adoption" title="Three steps to your deployment" />
-      <ol class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-3">
-        {
-          adoption.map((a) => (
-            <li class="bg-surface p-7">
-              <p class="font-mono text-[0.72rem] text-blue">{a.step}</p>
-              <h3 class="mt-3 font-serif text-[1.2rem] font-medium">{a.name}</h3>
-              <p class="mt-2.5 text-[0.9rem] leading-relaxed text-ink-soft">{a.body}</p>
-            </li>
-          ))
-        }
-      </ol>
-      <p class="mt-8 max-w-2xl text-sm text-ink-faint">
-        The reference adapters run on Cloudflare (Workers, Vectorize, D1, KV, R2); the ports are seams, so any platform
-        providing model serving, vector search and durable storage can carry a deployment.
-      </p>
+      <div class="border border-blue/25 bg-surface p-8">
+        <p class="eyebrow"><span class="tick"></span>Your deployment</p>
+        <p class="mt-4 max-w-2xl text-[0.98rem] leading-relaxed text-ink-soft">
+          Adoption follows what your organization already has: a Metanorma library is enough to begin, and every
+          further asset raises the annealment your members get.
+        </p>
+        <a href="/get-started/" class="mt-6 inline-block font-mono text-[0.8rem] text-blue hover:text-keyline">
+          The adoption paths → Get started
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

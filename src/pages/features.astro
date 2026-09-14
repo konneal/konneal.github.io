@@ -1,0 +1,74 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import SectionHead from '~/components/SectionHead.astro'
+import AssetTag from '~/components/AssetTag.astro'
+import { FEATURE_FAMILIES } from '~/data/site'
+---
+
+<BaseLayout
+  title="Features"
+  description="The complete capability catalog of Konneal: grounded answering, typed rendering, and execution — each feature tagged with the asset that powers it."
+>
+  <section class="border-b border-rule">
+    <div class="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pt-16">
+      <p class="eyebrow"><span class="tick"></span>Features</p>
+      <h1 class="mt-4 max-w-3xl font-sans text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.01em] sm:text-[2.7rem]">
+        Everything the annealed corpus does.
+      </h1>
+      <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-soft">
+        The catalog below states what each capability is and what your members experience, and tags the asset that
+        powers it. The three families are the annealment levels: answering, rendering, execution — in that order
+        because each family presupposes the one before it.
+      </p>
+      <p class="mt-4 max-w-2xl text-[0.9rem] leading-relaxed text-ink-faint">
+        A filled <AssetTag id="metanorma" /> tag marks the baseline that a Metanorma library already provides; an
+        outlined tag such as <AssetTag id="relaton" /> marks what that further asset adds. The
+        <a href="/#what-you-have" class="text-blue underline decoration-rule underline-offset-4 hover:decoration-keyline"
+          >inventory ladder</a
+        >
+        summarizes the same story, and <a href="/annealment/" class="text-blue underline decoration-rule underline-offset-4 hover:decoration-keyline">the measurement</a> grounds it.
+      </p>
+    </div>
+  </section>
+
+  {
+    FEATURE_FAMILIES.map((family) => (
+      <section class="border-b border-rule" id={family.id}>
+        <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+          <SectionHead eyebrow={`Family · ${FEATURE_FAMILIES.indexOf(family) + 1} of 3`} title={family.name} lede={family.blurb} />
+          <div class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-2">
+            {family.features.map((f) => (
+              <article class="bg-surface p-6 sm:p-7">
+                <h3 class="font-sans text-[1.1rem] font-semibold">{f.name}</h3>
+                <p class="mt-2.5 text-[0.92rem] leading-relaxed text-ink-soft">{f.what}</p>
+                <p class="mt-3 border-t border-rule pt-3 text-[0.85rem] leading-relaxed text-ink-faint">
+                  <span class="font-mono text-[0.66rem] uppercase tracking-[0.12em] text-ink-faint">In practice</span>
+                  {' — '}
+                  {f.practice}
+                </p>
+                <p class="mt-4 flex flex-wrap items-center gap-2">
+                  {f.assets.map((a) => (
+                    <AssetTag id={a} />
+                  ))}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section>
+    <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
+      <p class="max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
+        Capabilities are one lens. The second is what you can <em>do</em> with them, and the third is what they mean
+        for your role.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-6 font-mono text-[0.8rem] text-blue">
+        <a href="/use-cases/" class="hover:text-keyline">The jobs → Use cases</a>
+        <a href="/audiences/" class="hover:text-keyline">Who you are in this story → Audiences</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

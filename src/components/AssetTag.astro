@@ -1,0 +1,13 @@
+---
+import { ASSETS, type AssetId } from '~/data/site'
+interface Props {
+  id: AssetId
+}
+const { id } = Astro.props
+const a = ASSETS[id]
+const baseline = id === 'metanorma'
+---
+
+<span class:list={['asset-tag', baseline ? 'baseline' : 'additive']} title={a.what}>
+  {baseline ? a.name : `+ ${a.name}`}
+</span>

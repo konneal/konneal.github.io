@@ -78,8 +78,9 @@ const ratio = computed(() =>
     </div>
 
     <p class="note">
-      Computed in your browser. In the service this check is attached to the answer as data, with the standard’s own
-      word for the violation; hypothetical values are evaluated the same way as real ones.
+      This constraint comes from a publication model in the reference deployment’s corpus, and it is computed here in
+      your browser — the same deterministic evaluation the service attaches to answers as data, with the standard’s
+      own word for the violation. Hypothetical values are evaluated the same way as real ones.
     </p>
   </div>
 </template>
