@@ -1,11 +1,10 @@
 ---
 import Logo from './Logo.astro'
-import { NAV_FLAT, NAV_GROUPS, SITE } from '~/data/site'
+import { NAV, SITE } from '~/data/site'
 
 const path = Astro.url.pathname
 const norm = (p: string) => (p.endsWith('/') ? p : `${p}/`)
 const isActive = (href: string) => norm(path) === norm(href)
-const groupActive = (items: { href: string }[]) => items.some((i) => isActive(i.href))
 ---
 
 <header class="sticky top-0 z-40 border-b border-rule bg-paper/85 backdrop-blur">
@@ -14,31 +13,15 @@ const groupActive = (items: { href: string }[]) => items.some((i) => isActive(i.
       <Logo variant="light" lockup="primary" />
     </a>
 
-    <nav class="hidden items-center gap-1 md:flex" aria-label="Site">
+    <nav class="hidden items-center lg:flex" aria-label="Site">
       {
-        NAV_GROUPS.map((group) => (
-          <div class:list={['nav-drop relative', groupActive(group.items) && 'has-active']} data-nav-group>
-            <button type="button" aria-expanded="false" class="nav-drop-btn">
-              {group.label}
-              <svg width="8" height="5" viewBox="0 0 8 5" aria-hidden="true" class="nav-caret">
-                <path d="M0 0.5 4 4.5 8 0.5" fill="none" stroke="currentColor" stroke-width="1.2" />
-              </svg>
-            </button>
-            <div class="nav-panel">
-              {group.items.map((item) => (
-                <a href={item.href} class:list={['nav-panel-link', isActive(item.href) && 'active']}>
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        ))
-      }
-      {
-        NAV_FLAT.map((item) => (
+        NAV.map((item) => (
           <a
             href={item.href}
-            class:list={['nav-flat-link', isActive(item.href) && 'font-medium text-ink']}
+            class:list={[
+              'px-2.5 text-[0.88rem] transition-colors',
+              isActive(item.href) ? 'font-medium text-ink' : 'text-ink-soft hover:text-ink',
+            ]}
           >
             {item.label}
           </a>
@@ -46,7 +29,7 @@ const groupActive = (items: { href: string }[]) => items.some((i) => isActive(i.
       }
     </nav>
 
-    <div class="hidden items-center gap-3 md:flex">
+    <div class="hidden items-center gap-3 lg:flex">
       <a
         href={SITE.reference.url}
         class="border border-rule bg-surface px-3 py-1.5 font-mono text-[0.75rem] text-blue transition-colors hover:border-keyline"
@@ -61,7 +44,7 @@ const groupActive = (items: { href: string }[]) => items.some((i) => isActive(i.
       </a>
     </div>
 
-    <details class="relative md:hidden">
+    <details class="relative lg:hidden">
       <summary
         class="flex h-10 w-10 cursor-pointer list-none items-center justify-center border border-rule bg-surface"
         aria-label="Menu"
@@ -75,22 +58,14 @@ const groupActive = (items: { href: string }[]) => items.some((i) => isActive(i.
         aria-label="Site"
       >
         {
-          NAV_GROUPS.map((group) => (
-            <div class="border-b border-rule py-2 last:border-b-0">
-              <p class="px-2 pb-1 pt-1 font-mono text-[0.66rem] uppercase tracking-[0.15em] text-ink-faint">
-                {group.label}
-              </p>
-              {group.items.map((item) => (
-                <a href={item.href} class:list={['block px-2 py-2 text-[0.95rem]', isActive(item.href) ? 'font-medium text-blue' : 'text-ink-soft']}>
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          ))
-        }
-        {
-          NAV_FLAT.map((item) => (
-            <a href={item.href} class:list={['block border-b border-rule px-2 py-2.5 text-[0.95rem]', isActive(item.href) ? 'font-medium text-blue' : 'text-ink-soft']}>
+          NAV.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'border-b border-rule px-2 py-2.5 text-[0.95rem] last:border-b-0',
+                isActive(item.href) ? 'font-medium text-blue' : 'text-ink-soft',
+              ]}
+            >
               {item.label}
             </a>
           ))
@@ -108,94 +83,3 @@ const groupActive = (items: { href: string }[]) => items.some((i) => isActive(i.
     </details>
   </div>
 </header>
-
-<script>
-  const groups = Array.from(document.querySelectorAll<HTMLDivElement>('[data-nav-group]'))
-
-  function closeAll(except?: HTMLElement) {
-    for (const g of groups) {
-      if (g === except) continue
-      g.classList.remove('open')
-      g.querySelector('button')?.setAttribute('aria-expanded', 'false')
-    }
-  }
-
-  for (const g of groups) {
-    const btn = g.querySelector('button')
-    btn?.addEventListener('click', (e) => {
-      e.stopPropagation()
-      const willOpen = !g.classList.contains('open')
-      closeAll(g)
-      g.classList.toggle('open', willOpen)
-      btn.setAttribute('aria-expanded', String(willOpen))
-    })
-  }
-
-  document.addEventListener('click', () => closeAll())
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAll()
-  })
-</script>
-
-<style>
-  .nav-drop-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.45rem 0.7rem;
-    font-size: 0.92rem;
-    color: var(--color-ink-soft);
-    cursor: pointer;
-    transition: color 0.15s ease;
-  }
-  .nav-drop-btn:hover,
-  .nav-drop.has-active .nav-drop-btn {
-    color: var(--color-ink);
-  }
-  .nav-caret {
-    transition: transform 0.15s ease;
-    margin-top: 0.1em;
-  }
-  .nav-drop.open .nav-caret {
-    transform: rotate(180deg);
-  }
-  .nav-panel {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: calc(100% + 0.35rem);
-    min-width: 11rem;
-    border: 1px solid var(--color-rule);
-    background: var(--color-surface);
-    box-shadow: 0 12px 32px -16px rgba(29, 29, 27, 0.3);
-    padding: 0.4rem;
-    z-index: 50;
-  }
-  .nav-drop.open .nav-panel,
-  .nav-drop:focus-within .nav-panel {
-    display: block;
-  }
-  .nav-panel-link {
-    display: block;
-    padding: 0.5rem 0.65rem;
-    font-size: 0.92rem;
-    color: var(--color-ink-soft);
-  }
-  .nav-panel-link:hover {
-    color: var(--color-ink);
-    background: #f2f4f8;
-  }
-  .nav-panel-link.active {
-    color: var(--color-blue);
-    font-weight: 500;
-  }
-  .nav-flat-link {
-    padding: 0.45rem 0.7rem;
-    font-size: 0.92rem;
-    color: var(--color-ink-soft);
-    transition: color 0.15s ease;
-  }
-  .nav-flat-link:hover {
-    color: var(--color-ink);
-  }
-</style>

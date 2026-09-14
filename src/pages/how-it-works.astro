@@ -71,16 +71,15 @@ const serving = [
 >
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 pb-12 pt-14 sm:px-8 sm:pt-16">
-      <p class="eyebrow"><span class="tick"></span>How it works</p>
       <h1 class="mt-4 max-w-3xl font-sans text-[2.1rem] font-semibold leading-[1.1] tracking-[-0.01em] sm:text-[2.7rem]">
-        How the system works.
+        How Konneal works
       </h1>
       <p class="mt-5 max-w-2xl text-[1.02rem] leading-relaxed text-ink-soft">
-        Three words carry the whole machinery. The <strong class="font-medium text-ink">assets</strong> are what your
-        organization has already authored. The <strong class="font-medium text-ink">passes</strong> are the annealment
-        steps that bind that structure into a corpus a machine can traverse. The
-        <strong class="font-medium text-ink">gates</strong> are the measurements that decide whether anything ships.
-        The pipeline runs in one direction, and every stage leaves a record.
+        The <strong class="font-medium text-ink">assets</strong> are the artifacts your organization has already
+        authored. The <strong class="font-medium text-ink">passes</strong> are the pipeline stages that bind that
+        structure into the indexes the service queries. The <strong class="font-medium text-ink">gates</strong> are
+        the measurements that decide whether a change ships. The pipeline runs in one direction, and every stage
+        leaves a record.
       </p>
     </div>
   </section>
@@ -88,9 +87,8 @@ const serving = [
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <SectionHead
-        eyebrow="Assets"
         title="What you bring"
-        lede="Each asset below is structure the organization has already paid to create. Every one of them raises what the serving layer can do — and the library alone is enough to begin."
+        lede="Each asset below is structure the organization has already authored. Every one of them raises what the serving layer can do, and the library alone is enough to begin."
       />
       <div class="mt-10 grid gap-px overflow-hidden border border-rule bg-rule md:grid-cols-2 lg:grid-cols-3">
         {
@@ -114,7 +112,6 @@ const serving = [
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <SectionHead
-        eyebrow="Passes"
         title="The annealment passes"
         lede="From publications to the index, each pass adds verified structure and leaves a record it can be replayed from."
       />
@@ -140,7 +137,6 @@ const serving = [
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <SectionHead
-        eyebrow="Serving"
         title="What happens when you ask"
         lede="Seven stages, in order."
       />
@@ -161,7 +157,6 @@ const serving = [
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <SectionHead
-        eyebrow="Gates"
         title="What decides whether anything ships"
         lede="A golden suite decides whether a change ships."
       />
@@ -187,7 +182,7 @@ const serving = [
 
   <section>
     <div class="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-      <SectionHead eyebrow="Platform" title="Platform and models" />
+      <SectionHead title="Platform and models" />
       <div class="mt-8 max-w-3xl space-y-4 text-[0.95rem] leading-relaxed text-ink-soft">
         <p>
           All models are open-weight. No corpus data is sent to third-party services, and the system has no dependency

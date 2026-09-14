@@ -46,33 +46,6 @@ html {
   color: #fff;
 }
 
-/* Sheared tick — the site's structural marker, set at the mark's own shear. */
-.tick {
-  display: inline-block;
-  width: 0.6rem;
-  height: 0.6rem;
-  transform: skewX(var(--shear));
-  background: var(--color-blue);
-  flex: none;
-}
-
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-blue);
-}
-
-.on-night .eyebrow {
-  color: var(--color-ramp-lo);
-}
-.on-night .tick {
-  background: var(--color-ramp-lo);
-}
 
 /* Page-load sequence: quiet, staggered, once. */
 @keyframes rise {

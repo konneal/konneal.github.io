@@ -15,25 +15,11 @@ export const SITE = {
   },
 }
 
-export const NAV_GROUPS = [
-  {
-    label: 'Product',
-    items: [
-      { label: 'Features', href: '/features/' },
-      { label: 'How it works', href: '/how-it-works/' },
-    ],
-  },
-  {
-    label: 'Solutions',
-    items: [
-      { label: 'Use cases', href: '/use-cases/' },
-      { label: 'Audiences', href: '/audiences/' },
-    ],
-  },
-]
-
-export const NAV_FLAT = [
-  { label: 'Get started', href: '/get-started/' },
+export const NAV = [
+  { label: 'Features', href: '/features/' },
+  { label: 'How it works', href: '/how-it-works/' },
+  { label: 'Use cases', href: '/use-cases/' },
+  { label: 'Audiences', href: '/audiences/' },
   { label: 'Deployments', href: '/deployments/' },
   { label: 'About', href: '/about/' },
 ]
@@ -232,6 +218,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
 
 export interface UseCase {
   id: string
+  question: string
   name: string
   situation: string
   does: string
@@ -243,6 +230,7 @@ export interface UseCase {
 export const USE_CASES: UseCase[] = [
   {
     id: 'answer',
+    question: '"Where does R 60 address creep, and what is the maximum load for creep testing?"',
     name: 'Answer questions from the corpus',
     situation:
       'A member asks a question in their own words, at any hour, about any clause in the library — and needs an answer they can act on.',
@@ -253,6 +241,7 @@ export const USE_CASES: UseCase[] = [
   },
   {
     id: 'conformance',
+    question: '"Is a test cell with D_max = 26 000 v valid for E_max = 30 000 v?"',
     name: 'Decide conformance',
     situation:
       'A member states an instrument\'s values and asks whether the configuration conforms to the standard — a question with a computable answer.',
@@ -263,6 +252,7 @@ export const USE_CASES: UseCase[] = [
   },
   {
     id: 'absence',
+    question: '"Does R 60 constrain packaging?"',
     name: 'Prove absence',
     situation:
       'A member asks whether the standard constrains something, and "we found nothing" is not good enough — they need to know that nothing is there.',
@@ -273,6 +263,7 @@ export const USE_CASES: UseCase[] = [
   },
   {
     id: 'verify',
+    question: '"Check this draft answer against the corpus."',
     name: 'Check any answer',
     situation:
       'A member has an answer — from this service, from another system, from a colleague — and wants to know whether it holds against the corpus.',

@@ -11,18 +11,17 @@ import { INVENTORY, SITE, SUITE } from '~/data/site'
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:px-8 sm:pt-20">
       <div class="max-w-3xl">
-        <p class="eyebrow rise"><span class="tick"></span>For standards organizations</p>
         <h1
           class="rise mt-5 font-sans text-[2.3rem] font-semibold leading-[1.08] tracking-[-0.015em] sm:text-[3.1rem]"
           style="animation-delay: 0.08s"
         >
-          Konneal anneals your publications into a corpus a machine can traverse and compute.
+          Konneal serves your standards corpus as a question-answering service.
         </h1>
         <p class="rise mt-6 max-w-2xl text-[1.06rem] leading-relaxed text-ink-soft" style="animation-delay: 0.16s">
-          Konneal runs annealment passes over the publications your organization has already authored, and serves the
-          result to your members as a question-answering service: every answer names the publication, edition and
-          clause behind it, and where the rules carry machine-readable models, they are executed — with the arithmetic
-          shown.
+          Members ask questions in natural language and receive answers that name the publication, edition and clause
+          behind every claim. Rules that carry machine-readable models are evaluated deterministically, and the verdict
+          is returned with the arithmetic shown. The service runs under your organization’s own brand, on your own
+          corpus.
         </p>
         <p class="rise mt-5 max-w-2xl text-[0.95rem] leading-relaxed text-ink-faint" style="animation-delay: 0.2s">
           The method is measured: asked over plainer representations of the same corpus, the same questions answer two
@@ -52,7 +51,6 @@ import { INVENTORY, SITE, SUITE } from '~/data/site'
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
       <SectionHead
-        eyebrow="The served surface"
         title="What your members see"
         lede="An answer from a deployment carries its own evidence. The rendering below is illustrative of the served format; every element in it is produced by a mechanism described on this site."
       />
@@ -69,9 +67,8 @@ import { INVENTORY, SITE, SUITE } from '~/data/site'
   <section class="border-b border-rule" id="what-you-have">
     <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
       <SectionHead
-        eyebrow="The inventory"
         title="What you already have"
-        lede="Every artifact below is structure your organization has already paid to author. Konneal picks each one up where it stands, and each one raises what your members get."
+        lede="Every artifact below is structure your organization has already authored. Konneal reads each one directly, and each one raises what your members get."
       />
       <div class="mt-10 overflow-hidden border border-rule">
         {
@@ -100,7 +97,6 @@ import { INVENTORY, SITE, SUITE } from '~/data/site'
   <section class="border-b border-rule">
     <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
       <SectionHead
-        eyebrow="The suite"
         title="How that is possible"
         lede="Three layers make it possible: the documents are authored with structure, the rules are modelled as machines, and the serving layer anneals and serves the result."
       />
@@ -136,7 +132,6 @@ import { INVENTORY, SITE, SUITE } from '~/data/site'
       <div class="border border-blue/25 bg-surface p-8 sm:p-10">
         <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div class="max-w-xl">
-            <p class="eyebrow"><span class="tick"></span>Evidence</p>
             <h2 class="mt-3 font-sans text-[1.5rem] font-semibold leading-tight">The public reference deployment</h2>
             <p class="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">
               Konneal serves a live, public deployment over a real standards corpus today. Every claim on this site
@@ -162,7 +157,6 @@ import { INVENTORY, SITE, SUITE } from '~/data/site'
   <section class="on-night bg-night">
     <div class="mx-auto max-w-6xl px-5 py-16 text-ramp-hi sm:px-8">
       <div class="max-w-2xl">
-        <p class="eyebrow"><span class="tick"></span>Get started</p>
         <h2 class="mt-3 font-sans text-[1.7rem] font-semibold leading-tight text-white sm:text-[2rem]">
           Adoption starts with a Metanorma library.
         </h2>

@@ -23,3 +23,4 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [13](13-ribose-commercial.md) | Ribose commercial path (trademark cleared; pricing = contact Ribose) | done |
 | [14](14-copy-audit.md) | Copy audit: empty catchphrases removed | done |
 | [15](15-no-catchy-phrases.md) | Copy pass: no catchy phrases | done |
+| [16](16-ia-restructure.md) | IA restructure: no eyebrows, flat nav, complete sentences | done |
