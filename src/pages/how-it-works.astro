@@ -25,7 +25,7 @@ const passes = [
   },
   {
     name: 'Terminology and bibliographic binding',
-    body: 'Defined terms link to the clauses that define them, and the bibliographic registry organizes publication families with their editions and supersession links, so which edition is in force is answered from the record.',
+    body: 'Defined terms link to the clauses that define them, and the bibliographic registry organizes publication families with their editions and supersession links, so which edition is in force is answered from the record. The registry is joined by a citation graph: what each edition’s bibliography cites is extracted as a graph edge, so a question of the form “which standards does this publication reference” is answered from the record rather than by hoping a text search finds the bibliography section.',
   },
   {
     name: 'The model plane',
@@ -40,7 +40,7 @@ const serving = [
   },
   {
     name: 'Retrieval',
-    body: 'The question expands into several search forms — reworded variants and a draft answer as an additional key — run against a hybrid dense-plus-lexical index, fused by rank. The terminology graph adds its own candidates for defined terms.',
+    body: 'The question expands into several search forms — reworded variants and a draft answer as an additional key — run against a hybrid dense-plus-lexical index, fused by rank. Two structure-aware lanes add their own candidates: the terminology graph contributes the clauses that define a term when the question is about one, and the citation graph supplies the list of cited standards as structured data when the question asks what a publication cites, with the bibliography section retrieved as the passage that grounds it.',
   },
   {
     name: 'Ranking over structure',
@@ -171,6 +171,9 @@ const serving = [
           system. Every retrieval change bumps the index version, so no answer is served from a superseded index.
         </p>
         <p>
+          Deploys run from CI on merge, and a smoke probe questions the live service before a deploy is called done.
+        </p>
+        <p>
           Two capabilities go beyond answering and can be tried directly: conformance by execution, and the checking of
           any answer against the corpus. Both run as in-page demonstrations on
           <a href="/use-cases/" class="text-blue underline decoration-rule underline-offset-4 hover:decoration-keyline">the use cases page</a
@@ -191,6 +194,10 @@ const serving = [
         <p>
           The reference deployment runs on Cloudflare — Workers, Vectorize, D1, KV, R2 — with reference adapters in
           the engine. The design runs anywhere that provides model serving, vector search and durable storage.
+        </p>
+        <p>
+          The service also exposes a conversational HTTP API and an MCP server for AI agents, with tools for grounded
+          answers, passage search and the publication registry.
         </p>
         <p>
           The narrative for the reference corpus, written for its readers, is at

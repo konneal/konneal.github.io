@@ -65,7 +65,7 @@ export const INVENTORY = [
   },
   {
     asset: 'relaton' as AssetId,
-    gets: 'The registry carries publication families and supersession links, and answers are steered to the edition in force.',
+    gets: 'The registry carries publication families and supersession links, the citation graph records what each edition’s bibliography cites, and answers are steered to the edition in force.',
   },
   {
     asset: 'glossarist' as AssetId,
@@ -143,6 +143,12 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
         what: 'A question that names a publication or edition scopes retrieval to that document deterministically, from the question text rather than a model decision.',
         practice: 'A member asks about "R 60-1:2021 §4.4" and retrieval is pinned to that document, in your identifier scheme.',
         assets: ['metanorma', 'pubid'],
+      },
+      {
+        name: 'Citation graph traversal',
+        what: 'The citations in each edition’s bibliography are extracted at index time and stored as graph edges beside the publication registry. When a question asks what a publication cites or references, the answer draws the cited-standards list from the graph as structured data, and the bibliography passages are retrieved to ground the answer verbatim.',
+        practice: 'A member asks which standards a publication references; the answer presents the cited list for the edition, with identifiers normalized to the corpus’s scheme, and cites the bibliography section itself.',
+        assets: ['metanorma', 'relaton'],
       },
     ],
   },
@@ -342,7 +348,7 @@ export const ADOPTION = [
   {
     profile: 'Metanorma, plus data shapes',
     assets: ['pubid', 'relaton', 'glossarist', 'lutaml'] as AssetId[],
-    body: 'Each shape imports into the profile and raises its features: Pubid brings native identifier steering and citation formatting; Relaton brings edition governance; Glossarist brings terminology binding across registers and languages; Lutaml brings served model objects.',
+    body: 'Each shape imports into the profile and raises its features: Pubid brings native identifier steering and citation formatting; Relaton brings edition governance and the citation graph; Glossarist brings terminology binding across registers and languages; Lutaml brings served model objects.',
     path: 'The same passes pick each dataset up where it stands.',
   },
   {
@@ -391,9 +397,9 @@ export const PACKAGES = [
   },
   {
     step: '03',
-    cmd: 'python -m ingest.cli parse && …embed && …upsert',
+    cmd: 'python -m ingest.cli parse && …embed && …graph && …upsert',
     name: 'Ingest the corpus',
-    body: 'The engine\'s Python CLI parses the corpus along its own clause structure, embeds it via the same binding the server uses, and upserts the Vectorize index. One-time cost, bounded by corpus size.',
+    body: 'The engine\'s Python CLI parses the corpus along its own clause structure, embeds it via the same binding the server uses, builds the graph projection — the registry, the concepts, and the citation edges from the bibliographies — and upserts the Vectorize index. One-time cost, bounded by corpus size.',
   },
   {
     step: '04',
@@ -409,6 +415,7 @@ export const REFERENCE_STATS = [
   ['languages', '9'],
   ['defined terms', '≈ 9 000'],
   ['bibliographic records', '5 707'],
+  ['citation-graph edges', '≈ 300'],
   ['publication families', '224'],
   ['golden suite', '95 %+'],
 ]

@@ -75,7 +75,11 @@ const fam = await page.evaluate(() => [...document.querySelectorAll('section[id]
   ? pass('features: 3 families anchored')
   : fail(`features families: ${fam.join(',')}`)
 const featTags = await page.locator('article .asset-tag').count()
-featTags >= 13 ? pass(`features: ${featTags} tags on cards`) : fail(`features: ${featTags} tags`)
+featTags >= 14 ? pass(`features: ${featTags} tags on cards`) : fail(`features: ${featTags} tags`)
+const citationGraph = await page.locator('#grounded').textContent()
+;/Citation graph traversal/.test(citationGraph ?? '')
+  ? pass('features: citation graph traversal present')
+  : fail('features: citation graph traversal missing')
 
 await page.goto(base + '/use-cases/', { waitUntil: 'networkidle' })
 const ucQ = await page.locator('#answer').locator('p').nth(1).textContent()

@@ -26,6 +26,7 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [16](16-ia-restructure.md) | IA restructure: no eyebrows, flat nav, complete sentences | done |
 | [17](17-sentence-audit.md) | Sentence audit: data strings; TODO record refreshed | done |
 | [18](18-repo-docs-tooling.md) | Repo CLAUDE.md, README refresh, committed verify suite | done |
+| [19](19-sync-reference-procedures.md) | Sync with the reference deployment's latest procedures | done |
 
 Items 02–11 describe the structure as first built; item 16 supersedes
 them wherever they differ (flat nav without dropdowns, no eyebrows,
