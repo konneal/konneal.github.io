@@ -164,7 +164,8 @@ const serving = [
         <p>
           A golden question set with expected citations and witnesses runs end to end — three times — before any
           change is promoted, with paraphrase probes and leakage probes alongside. Grading is deterministic wherever
-          possible: expected spans must appear in retrieved passages, and judged components are labeled as judged.
+          possible: expected spans must appear in retrieved passages, and judged components are labeled as judged. A
+          judge that cannot complete a judgement returns no score rather than a truncated one.
         </p>
         <p>
           The gates never run while the index is being modified, because an honest measurement requires a settled
