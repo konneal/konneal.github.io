@@ -379,27 +379,27 @@ export const ENGAGEMENT = [
 export const PACKAGES = [
   {
     step: '01',
-    cmd: 'npm create @konneal/publisher my-sdo',
+    cmd: 'npm create @konneal/publisher my-sdo -- --with-site',
     name: 'Scaffold the deployment',
-    body: 'An interview asks for the publisher\'s facts — id, name, domains, identity issuer, first dataset — then writes the whole skeleton: profile/*.yaml (the single edit surface), the ten-line worker entry that injects the profile into the engine, the Cloudflare wrangler template, and the profile codegen. Every generated file is ordinary, reviewable code; the scaffolder never runs again.',
+    body: 'An interview asks for the publisher\'s facts — id, name, domains, identity issuer, first dataset — then writes the whole skeleton: profile/*.yaml (the single edit surface), the ten-line worker entry that injects the profile into the engine, the Cloudflare wiring, the profile codegen, and (with --with-site) a minimal Astro+Vue frontend consuming @konneal/client. Every file is ordinary, reviewable code; the scaffolder never runs again.',
   },
   {
     step: '02',
-    cmd: 'npm install && npm run gen:profile',
-    name: 'Declare the corpus and generate the profile',
-    body: 'profile/corpora.yaml names the corpus repository. Every edit to a profile file regenerates the committed profile.gen.ts; a drift test keeps both sides honest.',
+    cmd: 'cd my-sdo && npm install && node scripts/gen_profile.mjs',
+    name: 'Declare the corpus, generate the profile',
+    body: 'profile/corpora.yaml names the corpus repository; profile/prompts.yaml carries the publisher\'s voice (identity, refusal, citation examples). Every profile edit regenerates a committed TypeScript module; a drift test keeps both sides honest.',
   },
   {
     step: '03',
-    cmd: 'python -m ingest.cli parse | embed | upsert',
+    cmd: 'python -m ingest.cli parse && …embed && …upsert',
     name: 'Ingest the corpus',
-    body: 'The engine\'s ingest CLI parses the corpus, embeds it and upserts the Vectorize index. One-time cost, bounded by corpus size.',
+    body: 'The engine\'s Python CLI parses the corpus along its own clause structure, embeds it via the same binding the server uses, and upserts the Vectorize index. One-time cost, bounded by corpus size.',
   },
   {
     step: '04',
-    cmd: 'npm run deploy',
-    name: 'Serve under your brand',
-    body: 'Create the Vectorize/KV/D1 resources (wrangler prints the ids), fill them into wrangler.toml, deploy. The optional frontend starts from @konneal/ui-starter — theme tokens, chrome and conversation state are yours; the answer contract ships from @konneal/client.',
+    cmd: 'cd site && npm install && npm run build && cd .. && npm run deploy',
+    name: 'Build the site, serve under your brand',
+    body: 'The frontend\'s entire answer-contract surface — the SSE ask client, the markdown renderer, citation chips, typed blocks — comes from @konneal/client. What remains is the publisher\'s own: theme tokens, page chrome, conversation state. Deploy the Worker; it serves site/dist as its assets.',
   },
 ]
 
