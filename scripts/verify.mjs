@@ -143,6 +143,12 @@ treads.length === 5 && treads[4] > treads[0]
   ? pass(`annealment: staircase rising ${treads.join(',')}`)
   : fail(`annealment treads: ${treads.join(',')}`)
 
+await page.goto(base + '/how-it-works/', { waitUntil: 'networkidle' })
+const gatesText = await page.evaluate(() => document.body.textContent ?? '')
+;/share a single judge implementation/.test(gatesText)
+  ? pass('how-it-works: one-judge sentence present')
+  : fail('how-it-works: one-judge sentence missing')
+
 await page.goto(base + '/get-started/', { waitUntil: 'networkidle' })
 const pkgNote = await page.evaluate(() => document.body.textContent ?? '')
 ;/published to npm under the @konneal scope/.test(pkgNote) && /@konneal\/engine/.test(pkgNote)

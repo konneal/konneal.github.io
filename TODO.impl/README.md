@@ -30,6 +30,7 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [20](20-sync-golden-judge.md) | Sync: golden-judge budget and truncation rule | done |
 | [21](21-catalog-a11y.md) | Catalog completion, aria-current, JSON-LD; engine claims verified | done |
 | [22](22-sync-npm-packages.md) | Sync: the packages are published on npm | done |
+| [23](23-sync-one-judge.md) | Sync: one judge — harness and service share the implementation | done |
 
 Items 02–11 describe the structure as first built; item 16 supersedes
 them wherever they differ (flat nav without dropdowns, no eyebrows,
