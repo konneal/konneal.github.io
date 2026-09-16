@@ -70,16 +70,28 @@ const navLinks = await page.locator('header nav').first().locator('a').count()
 navLinks === 6 ? pass(`nav: ${navLinks} flat links`) : fail(`nav: ${navLinks} links`)
 
 await page.goto(base + '/features/', { waitUntil: 'networkidle' })
+const ariaCurrent = await page.locator('header nav a[aria-current="page"]').count()
+ariaCurrent === 2
+  ? pass('nav: aria-current on active link (desktop + mobile)')
+  : fail(`nav: aria-current count ${ariaCurrent}`)
+const jsonLd = await page.evaluate(() => document.querySelector('script[type="application/ld+json"]')?.textContent ?? '')
+try {
+  JSON.parse(jsonLd).parentOrganization.name === 'Ribose Inc.'
+    ? pass('head: Organization JSON-LD present')
+    : fail('head: Organization JSON-LD wrong')
+} catch {
+  fail('head: Organization JSON-LD unparsable')
+}
 const fam = await page.evaluate(() => [...document.querySelectorAll('section[id]')].map((s) => s.id))
 ;['grounded', 'typed', 'execution'].every((id) => fam.includes(id))
   ? pass('features: 3 families anchored')
   : fail(`features families: ${fam.join(',')}`)
 const featTags = await page.locator('article .asset-tag').count()
-featTags >= 14 ? pass(`features: ${featTags} tags on cards`) : fail(`features: ${featTags} tags`)
-const citationGraph = await page.locator('#grounded').textContent()
-;/Citation graph traversal/.test(citationGraph ?? '')
-  ? pass('features: citation graph traversal present')
-  : fail('features: citation graph traversal missing')
+featTags >= 16 ? pass(`features: ${featTags} tags on cards`) : fail(`features: ${featTags} tags`)
+const groundedText = await page.locator('#grounded').textContent()
+for (const name of ['Citation graph traversal', 'Standard-reference boosting', 'Research mode']) {
+  ;(groundedText ?? '').includes(name) ? pass(`features: ${name} present`) : fail(`features: ${name} missing`)
+}
 
 await page.goto(base + '/use-cases/', { waitUntil: 'networkidle' })
 const ucQ = await page.locator('#answer').locator('p').nth(1).textContent()

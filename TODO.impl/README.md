@@ -28,6 +28,7 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [18](18-repo-docs-tooling.md) | Repo CLAUDE.md, README refresh, committed verify suite | done |
 | [19](19-sync-reference-procedures.md) | Sync with the reference deployment's latest procedures | done |
 | [20](20-sync-golden-judge.md) | Sync: golden-judge budget and truncation rule | done |
+| [21](21-catalog-a11y.md) | Catalog completion, aria-current, JSON-LD; engine claims verified | done |
 
 Items 02–11 describe the structure as first built; item 16 supersedes
 them wherever they differ (flat nav without dropdowns, no eyebrows,

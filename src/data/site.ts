@@ -135,7 +135,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
       {
         name: 'Edition awareness',
         what: 'A bibliographic registry of publication families, editions and supersession links decides which edition is current, so answers are steered to the edition in force.',
-        practice: 'Every citation carries its edition and status; a superseded edition is cited only when it alone contains the required content.',
+        practice: 'Every citation carries its edition and status; a superseded edition is cited only when it alone contains the required content. When only superseded editions surface, the registry supplies the active edition\u2019s passages directly, so the answer cites the rule in force.',
         assets: ['metanorma', 'relaton'],
       },
       {
@@ -149,6 +149,18 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
         what: 'The citations in each edition’s bibliography are extracted at index time and stored as graph edges beside the publication registry. When a question asks what a publication cites or references, the answer draws the cited-standards list from the graph as structured data, and the bibliography passages are retrieved to ground the answer verbatim.',
         practice: 'A member asks which standards a publication references; the answer presents the cited list for the edition, with identifiers normalized to the corpus’s scheme, and cites the bibliography section itself.',
         assets: ['metanorma', 'relaton'],
+      },
+      {
+        name: 'Standard-reference boosting',
+        what: 'Many clauses cite external standards such as ISO/IEC 17025 by identifier. When a question names that standard, passages carrying the citation are boosted in the ranking, so the citation itself acts as a retrieval signal.',
+        practice: 'A member asks which test method a publication invokes for humidity; the clause that carries the citation outranks passages that merely mention the topic.',
+        assets: ['metanorma'],
+      },
+      {
+        name: 'Research mode',
+        what: 'Research mode runs a bounded loop of at most three passes. In each pass the system retrieves evidence, and an independent judge evaluates whether the evidence is sufficient to answer and names what is missing; the next pass retrieves specifically for the missing parts. The final answer is generated from the accumulated evidence.',
+        practice: 'A member turns on research mode for a multi-part question; each pass fills the gap the previous judge named, and the answer draws on everything the passes found.',
+        assets: ['metanorma'],
       },
     ],
   },
