@@ -143,6 +143,12 @@ treads.length === 5 && treads[4] > treads[0]
   ? pass(`annealment: staircase rising ${treads.join(',')}`)
   : fail(`annealment treads: ${treads.join(',')}`)
 
+await page.goto(base + '/get-started/', { waitUntil: 'networkidle' })
+const pkgNote = await page.evaluate(() => document.body.textContent ?? '')
+;/published to npm under the @konneal scope/.test(pkgNote) && /@konneal\/engine/.test(pkgNote)
+  ? pass('get-started: npm scope note present')
+  : fail('get-started: npm scope note missing')
+
 await ctx.close()
 await browser.close()
 console.log(results.join('\n'))
