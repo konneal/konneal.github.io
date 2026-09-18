@@ -135,7 +135,7 @@ export const FEATURE_FAMILIES: FeatureFamily[] = [
       {
         name: 'Edition awareness',
         what: 'A bibliographic registry of publication families, editions and supersession links decides which edition is current, so answers are steered to the edition in force.',
-        practice: 'Every citation carries its edition and status; a superseded edition is cited only when it alone contains the required content. When only superseded editions surface, the registry supplies the active edition\u2019s passages directly, so the answer cites the rule in force.',
+        practice: 'Every citation carries its edition and status; a superseded edition is cited only when it alone contains the required content. When only superseded editions surface, the registry supplies the active edition’s passages directly, so the answer cites the rule in force.',
         assets: ['metanorma', 'relaton'],
       },
       {
@@ -405,7 +405,7 @@ export const PACKAGES = [
     step: '02',
     cmd: 'cd my-sdo && npm install && node scripts/gen_profile.mjs',
     name: 'Declare the corpus, generate the profile',
-    body: 'profile/corpora.yaml names the corpus repository; profile/prompts.yaml carries the publisher\'s voice (identity, refusal, citation examples). Every profile edit regenerates a committed TypeScript module; a drift test keeps both sides honest.',
+    body: 'profile/corpora.yaml names the corpus repository; profile/prompts.yaml carries the publisher\'s voice (identity, refusal, citation examples), so questions about the publisher itself are answered from the profile and never refused. Every profile edit regenerates a committed TypeScript module; a drift test keeps both sides honest.',
   },
   {
     step: '03',

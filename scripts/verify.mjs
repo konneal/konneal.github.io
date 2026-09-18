@@ -145,11 +145,19 @@ treads.length === 5 && treads[4] > treads[0]
 
 await page.goto(base + '/how-it-works/', { waitUntil: 'networkidle' })
 const gatesText = await page.evaluate(() => document.body.textContent ?? '')
-;/share a single judge implementation/.test(gatesText)
-  ? pass('how-it-works: one-judge sentence present')
-  : fail('how-it-works: one-judge sentence missing')
+const gateSentences = [
+  ['one-judge sentence', /share a single judge implementation/],
+  ['retry-once sentence', /retried once rather than trusted/],
+]
+for (const [name, re] of gateSentences) {
+  re.test(gatesText) ? pass(`how-it-works: ${name} present`) : fail(`how-it-works: ${name} missing`)
+}
 
 await page.goto(base + '/get-started/', { waitUntil: 'networkidle' })
+const gsText = await page.evaluate(() => document.body.textContent ?? '')
+;/never refused/.test(gsText)
+  ? pass('get-started: never-refused identity guarantee present')
+  : fail('get-started: never-refused identity guarantee missing')
 const pkgNote = await page.evaluate(() => document.body.textContent ?? '')
 ;/published to npm under the @konneal scope/.test(pkgNote) && /@konneal\/engine/.test(pkgNote)
   ? pass('get-started: npm scope note present')

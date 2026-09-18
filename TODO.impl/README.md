@@ -31,6 +31,7 @@ the asset-inventory story as spine. Statuses are the honest record.
 | [21](21-catalog-a11y.md) | Catalog completion, aria-current, JSON-LD; engine claims verified | done |
 | [22](22-sync-npm-packages.md) | Sync: the packages are published on npm | done |
 | [23](23-sync-one-judge.md) | Sync: one judge — harness and service share the implementation | done |
+| [24](24-sync-identity-retry.md) | Sync: publisher identity never refused; retry-once gate | done |
 
 Items 02–11 describe the structure as first built; item 16 supersedes
 them wherever they differ (flat nav without dropdowns, no eyebrows,

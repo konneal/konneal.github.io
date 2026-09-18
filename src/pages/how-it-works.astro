@@ -167,7 +167,7 @@ const serving = [
           possible: expected spans must appear in retrieved passages, and judged components are labeled as judged. The
           evaluation harness and the live service share a single judge implementation, so the measurement and the
           served behaviour cannot drift apart. A judge that cannot complete a judgement returns no score rather than
-          a truncated one.
+          a truncated one. A degenerate all-zero judgement is retried once rather than trusted.
         </p>
         <p>
           The gates never run while the index is being modified, because an honest measurement requires a settled
