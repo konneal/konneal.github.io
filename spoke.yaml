@@ -1,0 +1,5 @@
+id: konneal
+name: Konneal
+base: https://www.konneal.org
+contentDir: src/content/news
+outDir: dist/news-data
