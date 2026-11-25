@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && newsml-spoke emit --config spoke.yaml",
+    "build": "astro build && newsmlg2 emit --config spoke.yaml",
     "preview": "astro preview",
     "check": "astro check",
     "verify": "node scripts/verify.mjs",
@@ -17,9 +17,9 @@
     "@fontsource-variable/ibm-plex-sans": "^5.2.8",
     "@fontsource-variable/source-serif-4": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.8",
-    "@riboseinc/newsml-spoke": "file:/Users/mulgogi/src/riboseinc/newsml-spoke",
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.7",
+    "newsmlg2-ts": "file:/Users/mulgogi/src/lutaml/newsmlg2-ts",
     "tailwindcss": "^4.3.2",
     "vite": "^8.1.4",
     "vue": "^3.5.39"
